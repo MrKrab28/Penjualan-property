@@ -15,14 +15,18 @@ return new class extends Migration
             $table->id();
             $table->foreignId('property_id');
             $table->foreignId('user_id');
+            $table->integer('jumlah_pembayaran');
+            $table->integer('nominal_dp');
+            $table->integer('nominal_harga');
             $table->string('no_rek');
-            $table->string('foto_ktp');
-            $table->date('tgl_book');
+            $table->string('foto_ktp')->nullable();
+            $table->date('tanggal');
             $table->timestamps();
 
             $table->foreign('property_id')->references('id')->on('property')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+
 
             $table->foreign('user_id')->references('id')->on('user')
                 ->onUpdate('cascade')
