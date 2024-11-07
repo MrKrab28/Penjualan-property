@@ -79,14 +79,14 @@ return [
         'route-name' => 'transaksi',
         'submenu' => [
             [
-                'route-active' => 'book',
+                'route-active' => 'booking',
                 'label' => 'Booking',
-                'route-name' => 'book',
+                'route-name' => 'booking',
 
             ],
             [
 
-                'route-active' => 'Penjualan',
+                'route-active' => 'penjualan',
                 'label' => 'Penjualan',
                 'route-name' => 'penjualan',
             ],

@@ -54,7 +54,7 @@
                         </p>
                     </div>
                     <div class="mb-3">
-                        <h5 class="mb-0">Harga Book</h5>
+                        <h5 class="mb-0">Harga Dp</h5>
                         <p>
                             Rp. {{ $property->harga_book }}
                         </p>

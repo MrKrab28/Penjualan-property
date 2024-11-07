@@ -1,12 +1,15 @@
 <?php
 
 use App\Models\User;
+use DeepCopy\f001\B;
+use App\Models\Penjualan;
 use App\Models\Spesifikasi;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PenjualanController;
@@ -63,8 +66,9 @@ Route::middleware('auth:admin')->group( function () {
     Route::patch('/property/spesifikasi/update/{spesifikasi}', [SpesifikasiController::class, 'update'])->name('spesifikasi.update');
     Route::delete('/property/spesifikasi/{spesifikasi}', [SpesifikasiController::class, 'destroy'])->name('spesifikasi.destroy');
 
-    // TRANSAKSI
-    Route::get('/transaksi',[TransaksiController::class,'index'])->name('transaksi');
-    Route::get('/transaksi/pengajuan',[TransaksiController::class,'book'])->name('book');
-    Route::get('/transaksi/penjualan',[TransaksiController::class,'penjualan'])->name('penjualan');
+    // PNJUALAN
+    Route::get('/transaksi/penjualan',[PenjualanController::class, 'index'])->name('penjualan');
+
+    // BOOKING
+    Route::get('transaksi/booking', [BookingController::class, 'index'])->name('booking');
 });

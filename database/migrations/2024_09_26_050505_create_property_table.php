@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('property');
             $table->foreignId('type_id');
             $table->foreignId('spesifikasi_id');
-            $table->integer('harga');
-            $table->integer('harga_book');
+            // $table->integer('harga');
+            // $table->integer('harga_book');
             $table->text('deskripsi');
             $table->string('lokasi');
             $table->timestamps();

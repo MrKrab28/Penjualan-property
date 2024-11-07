@@ -13,12 +13,21 @@ return new class extends Migration
     {
         Schema::create('harga', function (Blueprint $table) {
             $table->id();
-            $table->foreginId('property_id');
-            $table->foreginId('metode_id');
+            $table->foreignId('property_id');
+            $table->foreignId('metode_id');
             $table->integer('nominal');
             $table->integer('nominal_dp');
 
             $table->timestamps();
+
+
+            $table->foreign('property_id')->references('id')->on('property')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
+            $table->foreign('metode_id')->references('id')->on('metode')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
         });
     }
 

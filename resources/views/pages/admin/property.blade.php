@@ -21,9 +21,9 @@
                                     <option value="{{ $spek->id }}">{{ $spek->nama_spesifikasi }}</option>
                                 @endforeach
                             </x-form.select-search>
-                            <x-form.input label="Harga" name="harga" id="hargaInput" :isNumeric="true"
+                            <x-form.input label="Harga" name="nominal" id="nominalInput" :isNumeric="true"
                                 :required="true" />
-                            <x-form.input label="Harga Book" name="harga_book" id="harga_bookInput" :isNumeric="true"
+                            <x-form.input label="Harga Dp" name="nominal_dp" id="nominal_dpInput" :isNumeric="true"
                                 :required="true" />
                         </div>
                         <div class="col-md-6">

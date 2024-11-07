@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('penjualan', function (Blueprint $table) {
+        Schema::create('booking', function (Blueprint $table) {
             $table->id();
             $table->string('nama_property');
             $table->string('nama_type');
             $table->foreignId('user_id');
-            $table->integer('jumlah_pembayaran');
-            $table->integer('nominal_dp');
-            $table->integer('nominal_harga');
+            
+
+            $table->string('harga_book');
+            $table->enum('status' , ['terima', 'selesai', 'tolak']);
             $table->string('no_rek');
             $table->string('foto_ktp')->nullable();
             $table->date('tanggal');
@@ -28,7 +29,6 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('user')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-
         });
     }
 
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('penjualan');
+        Schema::dropIfExists('booking');
     }
 };
