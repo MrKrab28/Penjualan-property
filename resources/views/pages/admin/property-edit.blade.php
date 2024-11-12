@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <form action="{{ route('property.update', $property->id) }}" method="POST" autocomplete="off">
                         @csrf
-                        @method('PATCH')
+                        @method('PUT')
                         <x-form.input value="{{ $property->property }}" label="Property" name="property"
                             id="propertyInput" :required="true" />
                         <x-form.input value="{{ $property->lokasi }}" label="lokasi" name="lokasi" id="lokasiInput"
@@ -32,10 +32,16 @@
                                     {{ $spek->nama_spesifikasi }}</option>
                             @endforeach
                         </x-form.select-search>
-                        <x-form.input value="{{ $property->harga }}" label="harga" name="harga" id="hargaInput"
-                            :isNumeric="true" :required="true" />
-                        <x-form.input value="{{ $property->harga_book }}" label="harga Book" name="harga_book" id="hargaBookInput"
-                            :isNumeric="true" :required="true" />
+                        @foreach ($metodes as $metode)
+                            @foreach ($metode->harga as $harga)
+                                <x-form.input value="{{ $harga->nominal }}" label="Nominal-{{ $metode->nama }}"
+                                    name="nominal[{{ $metode->id }}]" id="nominalInput{{ $metode->id }}"
+                                    :isNumeric="true" :required="true" />
+                                <x-form.input value="{{ $harga->nominal_dp }}" label="Nominal DP-{{ $metode->nama }}"
+                                    name="nominal_dp[{{ $metode->id }}]" id="nominal_dpInput{{ $metode->id }}"
+                                    :isNumeric="true" :required="true" />
+                            @endforeach
+                        @endforeach
                         <x-form.textarea label="Deskripsi" id="deskripsiinput" name="deskripsi" :rows="5"
                             :required="true">{{ $property->deskripsi }}</x-form.textarea>
                         <div class="row">

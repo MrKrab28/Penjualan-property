@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use DeepCopy\f001\B;
+use App\Models\Metode;
 use App\Models\Penjualan;
 use App\Models\Spesifikasi;
 use Illuminate\Support\Facades\Route;
@@ -9,9 +10,11 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\MetodeController;
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\HargaController;
 use App\Http\Controllers\Admin\PenjualanController;
 use App\Http\Controllers\Admin\TransaksiController;
 use App\Http\Controllers\Admin\PropertyImgController;
@@ -40,7 +43,7 @@ Route::middleware('auth:admin')->group( function () {
     Route::post('/property/add', [PropertyController::class, 'store'])->name('property.store');
     Route::get('/property/edit/{property}', [PropertyController::class, 'edit'])->name('property.edit');
     Route::get('/property/show/{property}', [PropertyController::class, 'detail'])->name('property.detail');
-    Route::patch('/property/update/{property}', [PropertyController::class, 'update'])->name('property.update');
+    Route::put('/property/update/{property}', [PropertyController::class, 'update'])->name('property.update');
     Route::delete('/property/{property}', [PropertyController::class, 'destroy'])->name('property.destroy');
 
 
@@ -66,9 +69,24 @@ Route::middleware('auth:admin')->group( function () {
     Route::patch('/property/spesifikasi/update/{spesifikasi}', [SpesifikasiController::class, 'update'])->name('spesifikasi.update');
     Route::delete('/property/spesifikasi/{spesifikasi}', [SpesifikasiController::class, 'destroy'])->name('spesifikasi.destroy');
 
+    // HARGA
+    Route::get('/property/harga', [HargaController::class, 'index'])->name('harga');
+    Route::post('/property/harga/add', [HargaController::class, 'store'])->name('harga.store');
+    Route::get('/property/harga/edit/{harga}', [HargaController::class, 'edit'])->name('harga.edit');
+    Route::put('/property/harga/update/{harga}', [HargaController::class, 'update'])->name('harga.update');
+    Route::delete('/property/harga/delete/{harga}', [HargaController::class, 'delete'])->name('harga.delete');
+
     // PNJUALAN
     Route::get('/transaksi/penjualan',[PenjualanController::class, 'index'])->name('penjualan');
 
     // BOOKING
     Route::get('transaksi/booking', [BookingController::class, 'index'])->name('booking');
+
+
+    // METODE
+    Route::get('property/metode', [MetodeController::class, 'index'])->name('metode');
+    Route::post('property/metode/add', [MetodeController::class, 'store'])->name('metode.store');
+    Route::get('property/metode/edit/{metode}', [MetodeController::class, 'edit'])->name('metode.edit');
+    Route::put('property/metode/update/{metode}', [MetodeController::class, 'update'])->name('metode.update');
+    Route::delete('property/metode/delete/{metode}', [MetodeController::class, 'delete'])->name('metode.delete');
 });

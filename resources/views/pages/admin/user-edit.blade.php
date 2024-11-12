@@ -11,14 +11,14 @@
                 <div class="card-body">
                     <form action="{{ route('user.update', $user->id) }}" method="POST" autocomplete="off">
                         @csrf
-                        @method('PATCH')
-                        <x-form.input value="{{ $user->nama }}" label="Name" name="name" id="nameInput"
+                        @method('PUT')
+                        <x-form.input value="{{ $user->nama }}" label="Name" name="nama" id="nameInput"
                             :required="true" />
                         <x-form.input value="{{ $user->email }}" type="email" label="Email" name="email"
                             id="emailInput" :required="true" />
                         <x-form.input label="Password" name="password" type="password" id="passwordInput"
                             helperText="If you don't want to change password, leave it blank" />
-                        <x-form.input value="{{ $user->no_hp }}" label="Phone Number" type="tel" name="phone"
+                        <x-form.input value="{{ $user->no_hp }}" label="Phone Number" type="tel" name="no_hp"
                             id="phoneInput" :required="true" />
                         <x-form.select label="Gender" name="jk" id="roleSelect" :required="true">
                             <option value="LAKI-LAKI" @if ($user->jk == 'LAKI-LAKI') selected @endif>LAKI-LAKI</option>

@@ -11,4 +11,9 @@ class BookingController extends Controller
     {
         return view('pages.admin.booking');
     }
+
+    public function status()
+    {
+        return view('pages.admin.booking-create');
+    }
 }

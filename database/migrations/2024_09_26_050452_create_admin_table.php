@@ -20,11 +20,11 @@ return new class extends Migration
 
             $table->timestamps();
         });
-        $admin = new Admin();
-        $admin->email = 'admin@mail';
-        $admin->nama = 'admin';
-        $admin->password = bcrypt('123');
-        $admin->save();
+        // $admin = new Admin();
+        // $admin->email = 'admin@mail';
+        // $admin->nama = 'admin';
+        // $admin->password = bcrypt('123');
+        // $admin->save();
     }
 
     /**

@@ -3,20 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Type;
+use App\Models\Harga;
 use App\Models\Property;
 use App\Models\Spesifikasi;
 use Illuminate\Http\Request;
 use App\Models\PropertyImage;
 use App\Http\Controllers\Controller;
+use App\Models\Metode;
 
 class PropertyController extends Controller
 {
     public function index()
     {
-        return view('pages.admin.property',[
+        return view('pages.admin.property', [
             'properties' => Property::all(),
             'speks' => Spesifikasi::all(),
             'types' => Type::all(),
+            'metodes' => Metode::all(),
         ]);
     }
 
@@ -26,8 +29,9 @@ class PropertyController extends Controller
             'property' => 'required',
             'type_id' => 'required',
             'spesifikasi_id' => 'required',
-            // 'harga' => 'required',
-            // 'harga_book' => 'required',
+            'nominal' => 'required',
+            'nominal_dp' => 'required',
+            'nominal_book' => 'required',
             'lokasi' => 'required',
             'deskripsi' => 'required',
             'img' => 'required|image',
@@ -36,13 +40,25 @@ class PropertyController extends Controller
         $property = Property::create($data);
 
         $file = $request->file('img');
-        $filename = 'property'. '-' . time() . '.' . $file->extension();
+        $filename = 'property' . '-' . time() . '.' . $file->extension();
         $file->move(public_path('img/properties'), $filename);
 
         $image = new PropertyImage();
         $image->property_id = $property->id;
         $image->filename = $filename;
         $image->save();
+
+
+
+        $metodes = Metode::all();
+        foreach ($metodes as $metode) {
+            $harga = new Harga();
+            $harga->property_id = $property->id;
+            $harga->metode_id = $metode->id;
+            $harga->nominal = $request->nominal[$metode->id];
+            $harga->nominal_dp = $request->nominal_dp[$metode->id];
+            $harga->save();
+        }
 
         return redirect()->back()->with('success', 'Berhasil Menambahkan Data Property');
     }
@@ -52,6 +68,7 @@ class PropertyController extends Controller
 
         return view('pages.admin.property-detail', [
             'property' => $property,
+            'metodes' => Metode::all()
             // 'speks' => Spesifikasi::all(),
             // 'types' => Type::all(),
         ]);
@@ -63,22 +80,32 @@ class PropertyController extends Controller
             'property' => $property,
             'speks' => Spesifikasi::all(),
             'types' => Type::all(),
+            'metodes' => Metode::all(),
+            'Hargas' => Harga::all(),
         ]);
     }
 
     public function update(Request $request, Property $property)
     {
+
         $data = $request->validate([
             'property' => 'required',
             'type_id' => 'required',
             'spesifikasi_id' => 'required',
-            'harga' => 'required',
-            'harga_book' => 'required',
+            'nominal' => 'required',
+            'nominal_dp' => 'required',
+            'nominal_book' => 'required',
             'lokasi' => 'required',
             'deskripsi' => 'required',
+
+
         ]);
 
         $property->update($data);
+
+      
+
+
         return redirect()->back()->with('success', 'Berhasil Mengupdate Data Property');
     }
 

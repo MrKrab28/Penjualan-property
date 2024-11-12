@@ -70,6 +70,13 @@ return [
 
                 'route-name' => 'property.list',
             ],
+           
+            [
+                'route-active' => 'metode',
+                'label' => 'Metode',
+
+                'route-name' => 'metode',
+            ],
         ]
     ],
     [

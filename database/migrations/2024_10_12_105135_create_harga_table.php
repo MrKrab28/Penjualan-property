@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('metode_id');
             $table->integer('nominal');
             $table->integer('nominal_dp');
-
+            // $table->string('nominal_book');
             $table->timestamps();
 
 

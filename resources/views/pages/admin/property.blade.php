@@ -21,17 +21,29 @@
                                     <option value="{{ $spek->id }}">{{ $spek->nama_spesifikasi }}</option>
                                 @endforeach
                             </x-form.select-search>
-                            <x-form.input label="Harga" name="nominal" id="nominalInput" :isNumeric="true"
-                                :required="true" />
-                            <x-form.input label="Harga Dp" name="nominal_dp" id="nominal_dpInput" :isNumeric="true"
-                                :required="true" />
+                            {{-- <x-form.select-search label="Metode Pelunasan" name="metode_id" id="metode_idSelect"
+                                :required="true" modalId="formModal">
+                                @foreach ($metodes as $metode)
+                                    <option value="{{ $metode->id }}">{{ $metode->nama }}</option>
+                                @endforeach
+                            </x-form.select-search> --}}
+                            @foreach ($metodes as $metode)
+                                <x-form.input label="Nominal-{{ $metode->nama }}" name="nominal[{{ $metode->id }}]" id="nominalInput{{ $metode->id }}"
+                                    :isNumeric="true" :required="true" />
+                                <x-form.input label="Nominal Dp-{{ $metode->nama }}" name="nominal_dp[{{ $metode->id }}]"
+                                    id="nominal_dpInput{{ $metode->id }}" :isNumeric="true" :required="true" />
+                            @endforeach
+
+                            <x-form.input label="Harga Book" name="nominal_book" id="nominal_bookInput"
+                                :isNumeric="true" :required="true" />
+
                         </div>
                         <div class="col-md-6">
-
                             <x-form.textarea label="Lokasi" id="lokasiinput" name="lokasi" :rows="3"
                                 :required="true"></x-form.textarea>
                             <x-form.textarea label="Deskripsi" id="deskripsiinput" name="deskripsi" :rows="3"
                                 :required="true"></x-form.textarea>
+
                             <x-form.image label="Image" name="img" id="imgInput" :required="true" />
                         </div>
                     </div>
@@ -45,7 +57,7 @@
                     <th>Property</th>
                     <th>Type</th>
                     <th>Spesifikasi</th>
-                    <th>Harga</th>
+                    {{-- <th>Harga</th> --}}
                     <th></th>
                 </thead>
                 <tbody>
@@ -55,7 +67,7 @@
                             <td>{{ $property->property }}</td>
                             <td>{{ $property->types->nama_type }}</td>
                             <td>{{ $property->spesifikasi->nama_spesifikasi }}</td>
-                            <td>{{ $property->harga }}</td>
+                            {{-- <td>{{ $property->harga }}</td> --}}
 
                             <td class="text-center">
 

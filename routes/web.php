@@ -4,6 +4,7 @@ use App\Http\Controllers\User\PenjualanController;
 use App\Http\Controllers\User\PropertyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\User\BookingController;
 use App\Http\Controllers\User\HomeController;
 use App\Models\Property;
 
@@ -28,5 +29,7 @@ Route::middleware('auth:user')->group(function () {
 
 
     // book
-    Route::get('/property/books/{property}', [PenjualanController::class, 'index'])->name('user.book');
+    Route::get('/property/books/{property}', [BookingController::class, 'index'])->name('user.book');
+
+    Route::post('/property/books/{property}', [BookingController::class, 'store'])->name('user.book.store');
 });

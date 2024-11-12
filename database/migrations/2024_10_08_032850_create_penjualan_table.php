@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->integer('jumlah_pembayaran');
             $table->integer('nominal_dp');
+            $table->integer('nominal_book');
             $table->integer('nominal_harga');
             $table->string('no_rek');
             $table->string('foto_ktp')->nullable();

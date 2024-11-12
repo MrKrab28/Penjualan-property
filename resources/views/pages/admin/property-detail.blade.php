@@ -5,7 +5,7 @@
                 <div class="card-header">
                     <h3 class="card-title">Property</h3>
                 </div>
-                <div class="card-body" >
+                <div class="card-body">
                     @if ($property->images->count() > 0)
                         <x-component.img-carousel id="property" height="300px">
                             @foreach ($property->images as $image)
@@ -24,7 +24,7 @@
                     <div class="mt-3">
                         <h4 class="mb-0">{{ $property->property }} - {{ $property->types->nama_type }}</h4>
                         <p>{{ $property->spesifikasi->nama_spesifikasi }}</p>
-                        <p>{{ $property->deskripsi  }}</p>
+                        <p>{{ $property->deskripsi }}</p>
                     </div>
                 </div>
             </div>
@@ -35,29 +35,47 @@
                     <h3 class="card-title">property Detail</h3>
                 </div>
                 <div class="card-body">
-                    <div class="mb-3">
-                        <h5 class="mb-0">Property</h5>
-                        <p>{{ $property->property }}</p>
-                    </div>
-                    <div class="mb-3">
-                        <h5 class="mb-0">Lokasi</h5>
-                        <p>{{ $property->lokasi }}</p>
-                    </div>
-                    <div class="mb-3">
-                        <h5 class="mb-0">Type</h5>
-                        <p>{{ $property->types->nama_type }}</p>
-                    </div>
-                    <div class="mb-3">
-                        <h5 class="mb-0">Harga</h5>
-                        <p>
-                            Rp. {{ $property->harga }}
-                        </p>
-                    </div>
-                    <div class="mb-3">
-                        <h5 class="mb-0">Harga Dp</h5>
-                        <p>
-                            Rp. {{ $property->harga_book }}
-                        </p>
+                    <div class="row">
+                        <div class="col-md-6">
+
+
+                            <div class="mb-3">
+                                <h5 class="mb-0">Property</h5>
+                                <p>{{ $property->property }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h5 class="mb-0">Lokasi</h5>
+                                <p>{{ $property->lokasi }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h5 class="mb-0">Type</h5>
+                                <p>{{ $property->types->nama_type }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h5 class="mb-0">Nominal Book</h5>
+                                <p>
+                                    Rp. {{ $property->nominal_book }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            @foreach ($property->harga as $harga)
+                                <div class="mb-3">
+                                    <h5 class="mb-0">Nominal - {{ $harga->metode->nama }}</h5>
+                                    <p>
+                                        Rp. {{ $harga->nominal }}
+                                    </p>
+                                </div>
+                                <div class="mb-3">
+                                    <h5 class="mb-0">Nominal Dp - {{ $harga->metode->nama }}</h5>
+                                    <p>
+                                        Rp. {{ $harga->nominal_dp }}
+                                    </p>
+                                </div>
+                            @endforeach
+
+                        </div>
+
                     </div>
                     <hr>
                     <div class="row">
@@ -93,11 +111,11 @@
                             <x-component.button-icon icon="bx-edit" label="Edit" color="primary"
                                 href="{{ route('property.edit', $property) }}" />
                             {{-- @can('delete', $property) --}}
-                                <form action="{{ route('property.destroy', $property) }}" method="post" class="d-inline">
-                                    @csrf
-                                    @method('delete')
-                                    <x-component.button-icon icon="bx-trash" label="Delete" color="danger" type="submit" />
-                                </form>
+                            <form action="{{ route('property.destroy', $property) }}" method="post" class="d-inline">
+                                @csrf
+                                @method('delete')
+                                <x-component.button-icon icon="bx-trash" label="Delete" color="danger" type="submit" />
+                            </form>
                             {{-- @endcan --}}
                         </div>
                     </div>

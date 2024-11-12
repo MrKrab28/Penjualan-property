@@ -16,7 +16,7 @@ class Property extends Model
         'harga',
         'lokasi',
         'deskripsi',
-        'harga_book'
+        'nominal_book'
     ];
 
 
@@ -35,4 +35,11 @@ class Property extends Model
     {
         return $this->hasMany(PropertyImage::class, 'property_id');
     }
+
+    public function harga()
+    {
+        return $this->hasMany(Harga::class, 'property_id');
+    }
+
+  
 }

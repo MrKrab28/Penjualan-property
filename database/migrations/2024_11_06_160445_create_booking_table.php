@@ -16,12 +16,12 @@ return new class extends Migration
             $table->string('nama_property');
             $table->string('nama_type');
             $table->foreignId('user_id');
-            
 
-            $table->string('harga_book');
-            $table->enum('status' , ['terima', 'selesai', 'tolak']);
+
+        
+            $table->enum('status' , ['pending', 'diterima', 'ditolak'])->default('pending');
             $table->string('no_rek');
-            $table->string('foto_ktp')->nullable();
+            $table->string('foto_ktp');
             $table->date('tanggal');
             $table->timestamps();
 

@@ -22,7 +22,7 @@ class UserController extends Controller
             'password' => 'required',
         ]);
 
-        $user = new User();
+        $user = new User(); 
         $user->nama = $request->nama;
         $user->jk = $request->jk;
         $user->email = $request->email;

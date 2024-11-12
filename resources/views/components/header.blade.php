@@ -10,7 +10,7 @@
 
         <b>{{ ucfirst(request()->segment(3))  }} {{ ucfirst(request()->segment(2)) }}</b>
         @elseif (request()->segment(2) )
-        <b>Daftar {{ ucfirst(request()->segment(2)) }}</b>
+        <b>Daftar {{ ucfirst(request()->segment(3)) }}</b>
         @endif
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
