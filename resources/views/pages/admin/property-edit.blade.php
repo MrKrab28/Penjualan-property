@@ -15,6 +15,8 @@
                     <form action="{{ route('property.update', $property->id) }}" method="POST" autocomplete="off">
                         @csrf
                         @method('PUT')
+                        <x-form.input value="{{ $property->nominal_book }}" label="Nominal Book" name="nominal_book" id="nominal_bookInput"
+                            :required="true" :isNumeric="true" />
                         <x-form.input value="{{ $property->property }}" label="Property" name="property"
                             id="propertyInput" :required="true" />
                         <x-form.input value="{{ $property->lokasi }}" label="lokasi" name="lokasi" id="lokasiInput"
@@ -32,6 +34,7 @@
                                     {{ $spek->nama_spesifikasi }}</option>
                             @endforeach
                         </x-form.select-search>
+
                         @foreach ($metodes as $metode)
                             @foreach ($metode->harga as $harga)
                                 <x-form.input value="{{ $harga->nominal }}" label="Nominal-{{ $metode->nama }}"

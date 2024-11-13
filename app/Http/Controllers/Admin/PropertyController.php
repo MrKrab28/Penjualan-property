@@ -87,7 +87,7 @@ class PropertyController extends Controller
 
     public function update(Request $request, Property $property)
     {
-
+        
         $data = $request->validate([
             'property' => 'required',
             'type_id' => 'required',
@@ -103,7 +103,15 @@ class PropertyController extends Controller
 
         $property->update($data);
 
-      
+        $metodes = Metode::all();
+        foreach($metodes as $metode )
+        {
+            $harga = Harga::where('property_id' ,  $property->id)->where('metode_id' , $metode->id)->first();
+
+            $harga->nominal = $request->nominal[$metode->id];
+            $harga->nominal_dp = $request->nominal_dp[$metode->id];
+            $harga->update();
+        }
 
 
         return redirect()->back()->with('success', 'Berhasil Mengupdate Data Property');
