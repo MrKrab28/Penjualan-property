@@ -45,7 +45,7 @@
                         <h1 class="mb-4">Temukan Property <br>Terbaik Anda</h1>
                         <p style="font-size: 18px;">Bangun Masa Depan Cerah dengan Properti Idaman Serta Kenyamanan dan
                             Keindahan dalam Setiap Sudut | PT. Edy Mitra Karya </p>
-                       
+
                         <p><a href="{{ route('user.property') }}#properties"
                                 class="btn btn-primary rounded-pill py-3 px-4">View all properties</a></p>
                     </div>
@@ -197,7 +197,25 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="{{ asset('assets/user/js/google-map.js') }}"></script>
     <script src="{{ asset('assets/user/js/main.js') }}"></script>
-
+    <script src="{{ asset('assets/admin/libs/sweetalert2/sweetalert2.all.min.js') }}"></script>
+    @if (Session::has('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '{{ Session::get('success') }}',
+        })
+    </script>
+@endif
+@if (Session::has('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Failed',
+            text: '{{ Session::get('error') }}',
+        })
+    </script>
+@endif
 </body>
 
 </html>

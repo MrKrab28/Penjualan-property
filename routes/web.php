@@ -31,5 +31,10 @@ Route::middleware('auth:user')->group(function () {
     // book
     Route::get('/property/books/{property}', [BookingController::class, 'index'])->name('user.book');
 
-    Route::post('/property/books/{property}', [BookingController::class, 'store'])->name('user.book.store');
+    Route::post('/books/add', [BookingController::class, 'store'])->name('user.book.store');
+    Route::get('/books/edit/{booking}', [BookingController::class, 'edit'])->name('user.book.edit');
+    Route::put('/books/update/{booking}', [BookingController::class, 'update'])->name('user.book.update');
+    Route::delete('/books/delete/{booking}', [BookingController::class, 'destroy'])->name('user.book.delete');
+
+
 });

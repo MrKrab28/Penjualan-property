@@ -12,7 +12,9 @@
         }
     </style>
     <div class="container mt-5">
+
         <div class="row">
+
             <div class="col-md-5">
                 <div class="card">
                     <div class="card-header">
@@ -44,6 +46,9 @@
                                 </a>
                             </div>
                         @endif
+
+
+
                         <div class="mt-3">
                             <div class="row">
                                 <div class="col-md-6">
@@ -55,11 +60,12 @@
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <h5 class="mb-0">Harga</h5>
-                                        <p>Rp. {{ $property->harga }}</p>
+                                        <p>Rp. {{ $property->hargaCash->nominal }}</p>
+
                                     </div>
                                     <div class="mb-3">
                                         <h5 class="mb-0">Harga Book</h5>
-                                        <p>Rp. {{ $property->harga_book }}</p>
+                                        <p>Rp. {{ $property->nominal_book }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -76,32 +82,47 @@
                         <h3 class="card-title">Books Property</h3>
                     </div>
                     <div class="card-body">
+                        <form action="{{ route('user.book.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <x-form.input label="{{ auth()->user()->nama }}" value="{{ auth()->user()->id }}"
+                                        name="user_id" id="namaInput" :required="true" />
+                                    <p>{{ auth()->user()->email }}</p>
 
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <x-form.input label="Nama" value="{{ auth()->user()->nama }}" name="nama"
-                                    id="namaInput" :readonly="true" :required="true" />
-                                <x-form.input label="No. Rekening" name="no_rek" id="norekInput" :required="true" />
+                                    <x-form.input label="Foto KTP" name="foto_ktp" type="file" id="foto_ktpInput"
+                                        :required="true" />
+
+                                </div>
+
+                                <div class="col-md-6">
+                                    <x-form.input value="{{ $property->property }}" label="Property"
+                                        name="nama_property" id="nama_propertyInput" :required="true" readonly />
+
+                                    <x-form.input label="No. Rekening" name="no_rek" id="norekInput"
+                                        :required="true" />
+
+                                    <input type="date" class="form-control" name="tanggal" id="tanggalInput" value="{{ Carbon\Carbon::now() }}" hidden>
+                                    <x-component.button label="booking Now" color="primary" type="submit" />
+                                    @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+                                </div>
 
 
-                                <x-form.input label="Harga" name="harga" id="hargaInput" :isNumeric="true"
-                                    :required="true" />
-                                <x-form.input label="Harga Book" name="harga_book" id="harga_bookInput"
-                                    :isNumeric="true" :required="true" />
                             </div>
-                            <div class="col-md-6">
-
-
-                                <x-form.input label="Harga" name="harga" id="hargaInput" :isNumeric="true"
-                                    :required="true" />
-
-                            </div>
-
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </x-user.layout>

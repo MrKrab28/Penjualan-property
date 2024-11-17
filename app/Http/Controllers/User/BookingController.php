@@ -22,15 +22,24 @@ class BookingController extends Controller
     {
         $data = $request->validate([
             'nama_property' => 'required',
-            'nama_type' => 'required',
             'user_id' => 'required',
-            'harga_book' => 'required',
             'no_rek' => 'required',
             'foto_ktp' => 'required',
-            'tanggal' => 'required',
+
         ]);
 
+
+
+        $file = $request->file('foto_ktp');
+        $filename = 'ktp' . '-' . time() . '-'  . $file->extension();
+        $file->move(public_path('img/foto_ktp'), $filename);
+
+
+        $data['foto_ktp'] = $filename;
+        $data['tanggal'] = Carbon::now();
         Booking::create($data);
+     
+
         return redirect()->back()->with('success', 'Berhasil Melakukan Pengajuan Booking Property, Mohon Menunggu Konfirmasi Melalui Email Anda');
     }
 }

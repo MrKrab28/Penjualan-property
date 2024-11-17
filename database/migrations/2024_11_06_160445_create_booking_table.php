@@ -14,19 +14,19 @@ return new class extends Migration
         Schema::create('booking', function (Blueprint $table) {
             $table->id();
             $table->string('nama_property');
-            $table->string('nama_type');
             $table->foreignId('user_id');
 
 
-        
+
             $table->enum('status' , ['pending', 'diterima', 'ditolak'])->default('pending');
             $table->string('no_rek');
             $table->string('foto_ktp');
             $table->date('tanggal');
+
             $table->timestamps();
 
 
-            $table->foreign('user_id')->references('id')->on('user')
+            $table->foreign('user_id')->references('id')->on('users')
             ->onDelete('cascade')
             ->onUpdate('cascade');
         });

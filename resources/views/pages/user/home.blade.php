@@ -93,7 +93,7 @@
                                                     <span class="sale">Sale</span>
                                                 </div>
                                                 <p class="price"><span class="orig-price text-dark">Rp.
-                                                        {{ $property->harga }}</span>
+                                                       {{ $property->hargaCash->nominal }} </span>
                                                 </p>
                                             </div>
                                         </a>

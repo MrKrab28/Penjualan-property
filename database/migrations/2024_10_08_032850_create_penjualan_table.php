@@ -21,7 +21,14 @@ return new class extends Migration
             $table->integer('nominal_book');
             $table->integer('nominal_harga');
             $table->string('no_rek');
-            $table->string('foto_ktp')->nullable();
+            $table->string('foto_ktp');
+            $table->string('status_kawin');
+            $table->string('alamat');
+            $table->string('Pekerjaan');
+            $table->string('nama_tempatBekerja');
+            $table->string('alamat_tempatBekerja');
+            $table->string('Pendapatan_perbulan');
+            $table->string('Pendapatan_perbulan');
             $table->date('tanggal');
             $table->timestamps();
 

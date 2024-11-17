@@ -81,7 +81,15 @@ Route::middleware('auth:admin')->group( function () {
 
     // BOOKING
     Route::get('transaksi/booking', [BookingController::class, 'index'])->name('booking');
+    Route::post('/books/add', [BookingController::class, 'store'])->name('book.store');
+    Route::get('/books/edit/{booking}', [BookingController::class, 'edit'])->name('book.edit');
+    Route::put('/books/update/{booking}', [BookingController::class, 'update'])->name('book.update');
+    Route::delete('/books/delete/{booking}', [BookingController::class, 'destroy'])->name('book.delete');
 
+
+
+    Route::put('/books/status/{booking}/terima', [BookingController::class, 'statusTerima'])->name('status-book.terima');
+    Route::put('/books/status/{booking}/tolak', [BookingController::class, 'statusTolak'])->name('status-book.tolak');
 
     // METODE
     Route::get('property/metode', [MetodeController::class, 'index'])->name('metode');
