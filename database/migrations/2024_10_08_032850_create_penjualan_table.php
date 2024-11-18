@@ -24,11 +24,10 @@ return new class extends Migration
             $table->string('foto_ktp');
             $table->string('status_kawin');
             $table->string('alamat');
-            $table->string('Pekerjaan');
-            $table->string('nama_tempatBekerja');
-            $table->string('alamat_tempatBekerja');
-            $table->string('Pendapatan_perbulan');
-            $table->string('Pendapatan_perbulan');
+            $table->string('pekerjaan');
+            $table->string('nama_tempat_bekerja');
+            $table->string('alamat_tempat_bekerja');
+            $table->string('pendapatan_perbulan');
             $table->date('tanggal');
             $table->timestamps();
 

@@ -87,7 +87,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <x-form.input label="{{ auth()->user()->nama }}" value="{{ auth()->user()->id }}"
-                                        name="user_id" id="namaInput" :required="true" />
+                                        name="user_id" id="namaInput" :required="true" hidden />
                                     <p>{{ auth()->user()->email }}</p>
 
 
