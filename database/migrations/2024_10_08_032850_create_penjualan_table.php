@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('nominal_book');
             $table->integer('nominal_harga');
             $table->string('no_rek');
+            $table->string('nama_bank');
             $table->string('foto_ktp');
             $table->string('status_kawin');
             $table->string('alamat');
@@ -28,6 +29,9 @@ return new class extends Migration
             $table->string('nama_tempat_bekerja');
             $table->string('alamat_tempat_bekerja');
             $table->string('pendapatan_perbulan');
+            $table->string('nama_orang_terdekat');
+            $table->string('no_hp_orang_terdekat');
+            $table->string('alamat_orang_terdekat');
             $table->date('tanggal');
             $table->timestamps();
 

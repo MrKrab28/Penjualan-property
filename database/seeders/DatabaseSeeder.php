@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             spesifikasiSeeder::class,
             typeSeeder ::class,
+            MetodeSeeder::class,
             // PropertySeeder::class,
         ]);
     }
