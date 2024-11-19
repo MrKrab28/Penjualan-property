@@ -1,9 +1,81 @@
-<x-layout title="Properties">
+@push('styles')
+    @include('components.choices-js.styles')
+@endpush
+
+@push('scripts')
+    @include('components.choices-js.scripts')
+@endpush
+
+<x-layout title="Penjualan">
     <div class="card">
         <div class="card-header">
             <div class="d-flex justify-content-between align-items-center">
-                <h5 class="card-title">Properties</h5>
+                <h5 class="card-title">Penjualan</h5>
+                <x-form.modal label="New Sales" size="modal-xl" title="Form Penjualan"
+                    action="{{ route('penjualan.store') }}" :hasFile="true">
 
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <x-form.input label="Property" name="nama_property" id="propertyInput" :required="true" />
+                            <x-form.select-search label="Type" name="nama_type" id="typeSelect" :required="true"
+                                modalId="formModal">
+
+                                @foreach ($types as $type)
+                                    <option value="{{ $type->nama_type }}">{{ $type->nama_type }}</option>
+                                @endforeach
+                            </x-form.select-search>
+
+
+                            <div class="mb-3">
+                                <label for="user" class="form-label">Customer</label>
+                                <select class="form-select js-choice" id="user" name="user_id" required>
+                                    <option value="">Pilih</option>
+                                    @foreach ($daftarUser as $user)
+                                        <option value="{{ $user->id }}">{{ $user->nama }} || {{ $user->no_hp }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <x-form.textarea label="alamat" id="alamatinput" name="alamat" :rows="3"
+                            :required="true"></x-form.textarea>
+
+                            <x-form.input label="Status Kawin" name="status_kawin" id="status_kawinInput" :required="true" />
+
+                            <x-form.select-search label="Metode" name="metode" id="metodeSelect" :required="true"
+                                modalId="formModal">
+
+                                @foreach ($metodes as $metode)
+                                    <option value="{{ $metode->nama }}">{{ $metode->nama }}</option>
+                                @endforeach
+                            </x-form.select-search>
+                            <x-form.input label="Jumlah Pembayaran " name="jumlah_pembayaran" id="jumlah_pembayaranInput" :required="true" :isNumeric="true" />
+                            <x-form.input label="Nominal Harga Property " name="nominal_harga" id="nominal_hargaInput" :required="true" :isNumeric="true" />
+                            <x-form.input label="Nominal Dp " name="nominal_dp" id="nominal_dpInput" :required="true" :isNumeric="true" />
+
+
+                            <x-form.input label="No.Rekening" name="no_rek" id="no_rekInput" :required="true" />
+                            <x-form.input label="Nama Bank" name="nama_bank" id="nama_bankInput" :required="true" />
+                        </div>
+                        <div class="col-md-6">
+                            <x-form.input label="Pekerjaan" name="pekerjaan" id="pekerjaanInput" :required="true" />
+                            <x-form.input label="Nama Tempat Bekerja" name="nama_tempat_bekerja" id="nama_tempat_bekerjaInput" :required="true" />
+                            <x-form.textarea label="alamat tempat bekerja" id="alamat_tempat_bekerjainput" name="alamat_tempat_bekerja" :rows="3"
+                                :required="true"></x-form.textarea>
+                            <x-form.input label="Pendapatan/Bulan" name="gaji" id="gajiInput" :required="true"  :isNumeric="true"/>
+                            <x-form.input label="Nama Orang Terdekat" name="nama_orang_terdekat" id="nama_orang_terdekatInput" :required="true" />
+                            <x-form.input label="No.HP Orang Terdekat" name="no_hp_orang_terdekat" id="no_hp_orang_terdekatInput" :required="true" />
+                            <x-form.textarea label="Alamat Orang Terdekat" id="alamat_orang_terdekatInput" name="alamat_orang_terdekat" :rows="3"
+                            :required="true"></x-form.textarea>
+                            {{-- <x-form.input label="Tanggal" name="tanggal" id="tanggalInput" type="date" value="{{ Carbon\Carbon::now()->format('Y-m-d') }}" :required="true"  hidden/> --}}
+
+
+
+                            <x-form.image label="Foto KTP" name="foto_ktp" id="imgInput" :required="true" />
+
+                        </div>
+                    </div>
+                </x-form.modal>
             </div>
         </div>
         <div class="card-body">
@@ -13,27 +85,27 @@
                     <th>Property</th>
                     <th>Type</th>
                     <th>Spesifikasi</th>
-                    <th>Harga</th>
+                    {{-- <th>Harga</th> --}}
                     <th></th>
                 </thead>
                 <tbody>
-
+                    @foreach ($properties as $property)
                         <tr>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $property->property }}</td>
+                            <td>{{ $property->types->nama_type }}</td>
+                            <td>{{ $property->spesifikasi->nama_spesifikasi }}</td>
+                            {{-- <td>{{ $property->harga }}</td> --}}
 
                             <td class="text-center">
 
                                 <x-component.button-icon label="Detail" color="primary" icon="bx-detail"
-                                    href="$" :small="true" />
+                                    href="{{ route('property.detail', $property->id) }}" :small="true" />
 
 
                             </td>
                         </tr>
-
+                    @endforeach
                 </tbody>
             </x-component.datatable>
         </div>

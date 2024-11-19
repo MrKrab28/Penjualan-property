@@ -78,6 +78,7 @@ Route::middleware('auth:admin')->group( function () {
 
     // PNJUALAN
     Route::get('/transaksi/penjualan',[PenjualanController::class, 'index'])->name('penjualan');
+    Route::post('/transaksi/penjualan/add',[PenjualanController::class, 'store'])->name('penjualan.store');
 
     // BOOKING
     Route::get('transaksi/booking', [BookingController::class, 'index'])->name('booking');

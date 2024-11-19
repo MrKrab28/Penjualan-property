@@ -103,17 +103,18 @@
                                     <x-form.input label="No. Rekening" name="no_rek" id="norekInput"
                                         :required="true" />
 
-                                    <input type="date" class="form-control" name="tanggal" id="tanggalInput" value="{{ Carbon\Carbon::now() }}" hidden>
+                                    <input type="date" class="form-control" name="tanggal" id="tanggalInput"
+                                        value="{{ Carbon\Carbon::now() }}" hidden>
                                     <x-component.button label="booking Now" color="primary" type="submit" />
                                     @if ($errors->any())
-                                    <div class="alert alert-danger">
-                                        <ul>
-                                            @foreach ($errors->all() as $error)
-                                                <li>{{ $error }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </div>
-                                @endif
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
                                 </div>
 
 
