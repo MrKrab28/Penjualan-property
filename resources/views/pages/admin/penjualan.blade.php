@@ -46,7 +46,7 @@
                                 modalId="formModal">
 
                                 @foreach ($metodes as $metode)
-                                    <option value="{{ $metode->nama }}">{{ $metode->nama }}</option>
+                                    <option value="{{ $metode->nama }}" data-jumlah="{{ $metode->jumlah_pembayaran }}">{{ $metode->nama }}</option>
                                 @endforeach
                             </x-form.select-search>
                             <x-form.input label="Jumlah Pembayaran " name="jumlah_pembayaran" id="jumlah_pembayaranInput" :required="true" :isNumeric="true" />
@@ -110,4 +110,11 @@
             </x-component.datatable>
         </div>
     </div>
+    <script>
+         document.querySelector('#metodeSelect').addEventListener('change', function() {
+            console.log(this.options)
+            document.querySelector('#jumlah_pembayaranInput').value = this.options[this.selectedIndex].getAttribute('data-jumlah')
+
+        })
+    </script>
 </x-layout>
