@@ -27,7 +27,7 @@ class PenjualanController extends Controller
 
     public function store(Request $request)
     {
-
+        // dd($request->all());
         $data = $request->validate([
             'nama_property' => 'required',
             'nama_type' => 'required',
@@ -48,7 +48,7 @@ class PenjualanController extends Controller
             'no_hp_orang_terdekat' => 'required',
             'alamat_orang_terdekat' => 'required',
             'foto_ktp' => 'required',
-            'tanggal' => 'required',
+
 
 
 
