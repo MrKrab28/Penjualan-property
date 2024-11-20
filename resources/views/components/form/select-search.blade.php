@@ -6,7 +6,7 @@
 @endpush
 
 @push('scripts')
-    <script src="{{ asset('assets/libs/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/libs/select2/js/select2.min.js') }}"></script>
     @if ($modalId)
         <script>
             $('#{{ $id }}').select2({
@@ -29,7 +29,7 @@
     <label for="{{ $id }}" class="form-label">{{ $label }}</label>
     <select class="form-select @error($name) is-invalid @enderror" id="{{ $id }}" name="{{ $name }}"
         @if ($required) required @endif aria-label="{{ $label }}" data-placeholder="Choose">
-        <option></option>
+        <option>Pilih</option>
         {{ $slot }}
     </select>
 </div>

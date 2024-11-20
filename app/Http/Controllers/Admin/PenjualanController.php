@@ -10,34 +10,30 @@ use App\Models\Metode;
 use App\Models\Penjualan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Harga;
+use App\Models\Property;
 
 class PenjualanController extends Controller
 {
-    public function index(Penjualan $penjualan)
+    public function index()
     {
-
         return view('pages.admin.penjualan', [
-            'penjualans' => $penjualan->all(),
             'daftarUser' => User::all(),
-            'properties' => Penjualan::all(),
+            'properties' => Property::all(),
             'types' => Type::all(),
             'metodes' => Metode::all(),
+            'daftarPenjualan' => Penjualan::all(),
         ]);
     }
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $data = $request->validate([
-            'nama_property' => 'required',
-            'nama_type' => 'required',
-            'user_id' => 'required',
+            'property' => 'required',
+            'customer' => 'required',
             'alamat' => 'required',
             'status_kawin' => 'required',
-            'jumlah_pembayaran' => 'required',
             'metode' => 'required',
-            'nominal_harga' => 'required',
-            'nominal_dp' => 'required',
             'no_rek' => 'required',
             'nama_bank' => 'required',
             'pekerjaan' => 'required',
@@ -47,22 +43,29 @@ class PenjualanController extends Controller
             'nama_orang_terdekat' => 'required',
             'no_hp_orang_terdekat' => 'required',
             'alamat_orang_terdekat' => 'required',
-            'foto_ktp' => 'required',
-
-
-
-
+            'foto_ktp' => 'required'
         ]);
+
+        $property = Property::find($data['property']);
+        $metode = Metode::find($data['metode']);
+        $harga = Harga::where('property_id', $property->id)->where('metode_id', $data['metode'])->first();
+
+        $data['nama_property'] = $property->property;
+        $data['nama_type'] = $property->types->nama_type;
+        $data['user_id'] = $data['customer'];
+        $data['jumlah_pembayaran'] = $metode->jumlah_pembayaran;
+        $data['nominal_dp'] = $harga->nominal_dp;
+        $data['nominal_harga'] = $harga->nominal;
+
         $file = $request->file('foto_ktp');
-        $filename = 'ktp' . '-' . time() . '-'  . $file->extension();
+        $filename = 'ktp' . '-' . time() . '.'  . $file->extension();
         $file->move(public_path('img/penjualan/foto_ktp'), $filename);
         $data['foto_ktp'] = $filename;
         $data['tanggal'] = Carbon::now();
-       Penjualan::create($data);
 
-       return redirect()->back()->with('success', 'Berhasil Menambahkan Data Penjualan');
+        Penjualan::create($data);
 
-
+        return redirect()->back()->with('success', 'Berhasil Menambahkan Data Penjualan');
     }
 
     public function edit(Penjualan $penjualan)
@@ -94,11 +97,9 @@ class PenjualanController extends Controller
             'nama_orang_terdekat' => 'required',
             'alamat_orang_terdekat' => 'required',
             'no_hp_orang_terdekat' => 'required',
-
-
         ]);
 
-     $penjualan->update($data);
+        $penjualan->update($data);
 
         return redirect()->back()->with('success', 'Berhasil Mengubah Data Penjualan');
     }
