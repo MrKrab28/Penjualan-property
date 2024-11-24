@@ -14,6 +14,7 @@
                     <th>No. Rekening</th>
                     <th>Booking By</th>
                     <th>Tanggal Booking</th>
+                    <th>Status</th>
                     <th></th>
                 </thead>
                 <tbody>
@@ -25,6 +26,7 @@
                            <td>{{ $booking->no_rek }} </td>
                            <td>{{ $booking->user->nama }}</td>
                            <td>{{ Carbon\Carbon::parse($booking->tanggal)->IsoFormat('DD MMMM YY') }}</td>
+                           <td> <span class="badge @if($booking->status == 'diterima')bg-success @elseif($booking->status == 'ditolak')bg-danger @elseif('pending')bg-warning @endif"> {{ $booking->status }}</span></td>
 
                             <td class="text-center">
 

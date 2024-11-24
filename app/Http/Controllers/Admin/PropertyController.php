@@ -55,8 +55,8 @@ class PropertyController extends Controller
             $harga = new Harga();
             $harga->property_id = $property->id;
             $harga->metode_id = $metode->id;
-            $harga->nominal = $request->nominal[$metode->id];
-            $harga->nominal_dp = $request->nominal_dp[$metode->id];
+            $harga->nominal = convertToNumber($request->nominal[$metode->id]) ;
+            $harga->nominal_dp = convertToNumber($request->nominal_dp[$metode->id]) ;
             $harga->save();
         }
 
@@ -87,7 +87,7 @@ class PropertyController extends Controller
 
     public function update(Request $request, Property $property)
     {
-        
+
         $data = $request->validate([
             'property' => 'required',
             'type_id' => 'required',

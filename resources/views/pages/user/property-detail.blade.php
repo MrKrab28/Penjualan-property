@@ -109,8 +109,14 @@
 
                                         </ul>
                                     </div>
+                                    @php
+                                        $penjualanUser = App\Models\Penjualan::where('user_id', auth()->user()->id)->first();
+                                    @endphp
+                                    @if (!$penjualanUser)
 
                                     <a href="{{ route('user.book', $property->id) }}" class="btn btn-primary rounded-pill py-3 px-4 mt-3">Book Now</a></p>
+                                    @endif
+
                                 </div>
                             </div>
 

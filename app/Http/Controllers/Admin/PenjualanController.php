@@ -17,9 +17,11 @@ class PenjualanController extends Controller
 {
     public function index()
     {
+        $penjualan = Penjualan::all()->pluck('nama_property');
+        // $pelunasanMetode = Metode::where('id' , $penjualan->metode)->first();
         return view('pages.admin.penjualan', [
             'daftarUser' => User::all(),
-            'properties' => Property::all(),
+            'properties' => Property::whereNotIn('property', $penjualan)->get(),
             'types' => Type::all(),
             'metodes' => Metode::all(),
             'daftarPenjualan' => Penjualan::all(),
@@ -54,8 +56,8 @@ class PenjualanController extends Controller
         $data['nama_type'] = $property->types->nama_type;
         $data['user_id'] = $data['customer'];
         $data['jumlah_pembayaran'] = $metode->jumlah_pembayaran;
-        $data['nominal_dp'] = $harga->nominal_dp;
-        $data['nominal_harga'] = $harga->nominal;
+        $data['nominal_dp'] =  convertToNumber($harga->nominal_dp);
+        $data['nominal_harga'] = convertToNumber($harga->nominal);
 
         $file = $request->file('foto_ktp');
         $filename = 'ktp' . '-' . time() . '.'  . $file->extension();
@@ -102,6 +104,21 @@ class PenjualanController extends Controller
         $penjualan->update($data);
 
         return redirect()->back()->with('success', 'Berhasil Mengubah Data Penjualan');
+    }
+
+    public function detail(Penjualan $penjualan)
+
+    {
+        $metode = Metode::where('id' , $penjualan->metode)->first();
+
+
+        $property = Property::where('property' , $penjualan->nama_property)->first();
+        return view('pages.admin.penjualan-detail', [
+            'penjualan' => $penjualan,
+            'property' => $property,
+            'metodes' => $metode
+
+        ]);
     }
 
     public function destroy(Penjualan $penjualan)

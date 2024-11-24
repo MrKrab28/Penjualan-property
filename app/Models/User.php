@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -24,7 +26,7 @@ class User extends Authenticatable
     ];
 
 
-    
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -51,11 +53,21 @@ class User extends Authenticatable
 
     public function penjualan()
     {
-        return $this->hasOne(Penjualan::class, 'user_id');
+        return $this->hasMany(Penjualan::class, 'user_id');
     }
+
 
     public function statusBooking()
     {
         return $this->hasMany(Booking::class, 'user_id');
+    }
+
+
+
+    public function PenjualanTerkahir(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->penjualan->sortByDesc('tanggal')->first()
+        );
     }
 }

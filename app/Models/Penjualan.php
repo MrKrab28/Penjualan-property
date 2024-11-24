@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Cicilan;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Penjualan extends Model
 {
@@ -34,5 +36,29 @@ class Penjualan extends Model
     public function users()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function cicilan()
+    {
+        return $this->hasMany(Cicilan::class, 'penjualan_id');
+    }
+
+    public function lunas(): Attribute
+    {
+
+        return Attribute::make(
+
+
+            get: fn() =>  round($this->cicilan->sum('nominal_cicilan'), -3) >= $this->nominal_harga
+
+        );
+    }
+
+    public function CashLunas(): Attribute
+    {
+        $metode = Metode::where('id', $this->metode)->first();
+        return Attribute::make(
+            get: fn() => $this->metode == $metode->id
+        );
     }
 }

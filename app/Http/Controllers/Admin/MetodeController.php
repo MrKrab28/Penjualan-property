@@ -25,8 +25,8 @@ class MetodeController extends Controller
     }
 
     public function edit(Metode $metode){
-        return view('pages.admin.edit_metode', [
-            'metodes' => $metode]);
+        return view('pages.admin.metode-edit', [
+            'metode' => $metode]);
     }
     public function update(Request $request, Metode $metode)
      {

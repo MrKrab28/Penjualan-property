@@ -10,11 +10,12 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\HargaController;
 use App\Http\Controllers\Admin\MetodeController;
 use App\Http\Controllers\Admin\BookingController;
+use App\Http\Controllers\Admin\CicilanController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\HargaController;
 use App\Http\Controllers\Admin\PenjualanController;
 use App\Http\Controllers\Admin\TransaksiController;
 use App\Http\Controllers\Admin\PropertyImgController;
@@ -65,9 +66,9 @@ Route::middleware('auth:admin')->group( function () {
     //SPESIFIKASI
     Route::get('/property/spesifikasi', [SpesifikasiController::class, 'index'])->name('spesifikasi');
     Route::post('/property/spesifikasi/add', [SpesifikasiController::class, 'store'])->name('spesifikasi.store');
-    Route::get('/property/spesifikasi/edit/{spesifikasi}', [SpesifikasiController::class, 'edit'])->name('spesifikasi.edit');
-    Route::patch('/property/spesifikasi/update/{spesifikasi}', [SpesifikasiController::class, 'update'])->name('spesifikasi.update');
-    Route::delete('/property/spesifikasi/{spesifikasi}', [SpesifikasiController::class, 'destroy'])->name('spesifikasi.destroy');
+    Route::get('/property/spesifikasi/edit/{spek}', [SpesifikasiController::class, 'edit'])->name('spesifikasi.edit');
+    Route::put('/property/spesifikasi/update/{spek}', [SpesifikasiController::class, 'update'])->name('spesifikasi.update');
+    Route::delete('/property/spesifikasi/{spek}', [SpesifikasiController::class, 'destroy'])->name('spesifikasi.destroy');
 
     // HARGA
     Route::get('/property/harga', [HargaController::class, 'index'])->name('harga');
@@ -79,6 +80,20 @@ Route::middleware('auth:admin')->group( function () {
     // PNJUALAN
     Route::get('/transaksi/penjualan',[PenjualanController::class, 'index'])->name('penjualan');
     Route::post('/transaksi/penjualan/add',[PenjualanController::class, 'store'])->name('penjualan.store');
+    Route::get('/transaksi/penjualan/edit/{penjualan}',[PenjualanController::class, 'edit'])->name('penjualan.edit');
+    Route::get('/transaksi/penjualan/detail/{penjualan}',[PenjualanController::class, 'detail'])->name('penjualan.detail');
+    Route::put('/transaksi/penjualan/update/{penjualan}',[PenjualanController::class, 'update'])->name('penjualan.update');
+    Route::delete('/transaksi/penjualan/delete/{penjualan}',[PenjualanController::class, 'destroy'])->name('penjualan.delete');
+
+
+    // CICILAN
+    Route::get('/transaksi/cicilan/',[CicilanController::class, 'index'])->name('cicilan');
+    Route::get('/transaksi/cicilan/{penjualan}',[CicilanController::class, 'detail'])->name('cicilan.detail');
+    Route::post('/transaksi/cicilan/add/',[CicilanController::class, 'store'])->name('cicilan.store');
+    Route::get('/transaksi/cicilan/edit/{cicilan}',[CicilanController::class, 'edit'])->name('cicilan.edit');
+    Route::put('/transaksi/cicilan/update/{cicilan}',[CicilanController::class, 'update'])->name('cicilan.update');
+    Route::delete('/transaksi/cicilan/delete/{cicilan}',[CicilanController::class, 'destroy'])->name('cicilan.delete');
+
 
     // BOOKING
     Route::get('transaksi/booking', [BookingController::class, 'index'])->name('booking');

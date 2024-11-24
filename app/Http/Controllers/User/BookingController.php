@@ -38,8 +38,17 @@ class BookingController extends Controller
         $data['foto_ktp'] = $filename;
         $data['tanggal'] = Carbon::now();
         Booking::create($data);
-     
 
-        return redirect()->back()->with('success', 'Berhasil Melakukan Pengajuan Booking Property, Mohon Menunggu Konfirmasi Melalui Email Anda');
+
+        return redirect()->route('user.index')->with('success', 'Berhasil Melakukan Pengajuan Booking Property, Mohon Menunggu Konfirmasi Melalui Email Anda');
+    }
+
+    public function detail(Booking $booking)
+    {
+        $property = Property::where('property', $booking->nama_property)->first();
+        return view('pages.user.booking-detail', [
+            'booking' => $booking,
+            'property' => $property
+        ]);
     }
 }

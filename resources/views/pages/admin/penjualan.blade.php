@@ -80,24 +80,31 @@
                 <thead>
                     <th>#</th>
                     <th>Property</th>
-                    <th>Type</th>
-                    <th>Spesifikasi</th>
+                    <th>Customer</th>
+                    <th>Tanggal Penjualan</th>
+                    <th>Metode</th>
+                    <th>Status</th>
                     {{-- <th>Harga</th> --}}
                     <th></th>
                 </thead>
                 <tbody>
                     @foreach ($daftarPenjualan as $penjualan)
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            {{-- <td>{{ $property->harga }}</td> --}}
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $penjualan->nama_property }}</td>
+                            <td>{{ $penjualan->users->nama }}</td>
+                            <td>{{ Carbon\Carbon::parse($penjualan->tanggal)->IsoFormat('DD MMMM YY') }}</td>
+                            <td>{{ $metodes->where('id', $penjualan->metode)->first()->nama  }}</td>
+
+
+                            {{-- <td>{{ $penjualan->lunas }}</td> --}}
+                            <td>{!! $penjualan->lunas ?  '<span class="text-success">Lunas</span>' : '<span class="text-danger">Belum Lunas</span>' !!}</td>
+
 
                             <td class="text-center">
 
                                 <x-component.button-icon label="Detail" color="primary" icon="bx-detail"
-                                    href="{{ route('property.detail', $property->id) }}" :small="true" />
+                                    href="{{ route('penjualan.detail', $penjualan->id) }}" :small="true" />
 
 
                             </td>

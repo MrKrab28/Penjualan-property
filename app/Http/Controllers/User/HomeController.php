@@ -12,4 +12,9 @@ class HomeController extends Controller
     {   $properties = Property::query()->take(3)->get();
         return view('pages.user.home', compact('properties'));
     }
+
+    public function about()
+    {
+        return view('pages.user.about');
+    }
 }

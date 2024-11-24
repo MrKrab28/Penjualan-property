@@ -17,12 +17,12 @@
 
                 <div class="col-md-4" id="properties">
                     <div class="property-wrap ftco-animate">
-                        <a href="properties-single.html" class="img"
+                        <a href="{{ asset('img/properties/' . $firstImage->filename) }}"  class="img"
                             style="background-image: url({{ asset('img/properties/' . $firstImage->filename) }});">
                             <div class="rent-sale">
                                 <span class="sale">Sale</span>
                             </div>
-                            <p class="price"><span class="orig-price">Rp. {{ $property->harga->nominal }}</span></p>
+                            <p class="price"><span class="orig-price">Rp. {{ $property->hargaCash->nominal }}</span></p>
                         </a>
                         <div class="text">
                             <ul class="property_list">
@@ -30,9 +30,9 @@
                                 <li><span class="flaticon-bathtub"></span>{{ $property->spesifikasi->nama_spesifikasi }}</li>
 
                             </ul>
-                            <h3><a href="#">{{ $property->property }}</a></h3>
+                            <h3><a href="{{ route('user.property-detail', $property->id) }}#property-detail">{{ $property->property }}</a></h3>
                             <span class="location">{{ Str::limit($property->lokasi, 30) }}</span>
-                            <a href="#" class="d-flex align-items-center justify-content-center btn-custom">
+                            <a href="{{ route('user.property-detail', $property->id) }}#property-detail" class="d-flex align-items-center justify-content-center btn-custom">
                                 <span class="fa fa-link"></span>
                             </a>
                             <div class="list-team d-flex align-items-center mt-2 pt-2 border-top">

@@ -15,7 +15,7 @@ class MetodeSeeder extends Seeder
     {
         $metode = [
             ['nama' => 'Cash', 'jumlah_pembayaran' =>  1 ],
-            ['nama' => 'Kredit -155x', 'jumlah_pembayaran' =>  155 ],
+            ['nama' => 'Kredit -132x', 'jumlah_pembayaran' =>  132 ],
         ];
 
         Metode::insert($metode);

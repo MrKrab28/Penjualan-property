@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item @if (request()->segment(1) == 'user') active @endif "><a href="{{ route('user.index') }}" class="nav-link">Home</a></li>
-                <li class="nav-item @if (request()->segment(1) == 'about') active @endif "><a href="about.html" class="nav-link">About</a></li>
+                <li class="nav-item @if (request()->segment(1) == 'about') active @endif "><a href="{{ route('user.about') }}" class="nav-link">About</a></li>
                 <li class="nav-item @if (request()->segment(1) == 'property') active @endif "><a href="{{ route('user.property') }}#properties" class="nav-link">Properties</a></li>
                 <li class="nav-item @if (request()->segment(1) == 'contact') active @endif "><a href="contact.html" class="nav-link">Contact</a></li>
 
@@ -27,10 +27,22 @@
                             <i class="fa fa-user"></i>
                             <span class="align-middle">My Profile</span>
                         </a>
-                        <a class="dropdown-item" href="#">
+                        @php
+                            $penjualan = App\Models\Penjualan::where('user_id', auth()->user()->id)->get();
+                            $booking = App\Models\Booking::where('user_id', auth()->user()->id)->get();
+                        @endphp
+                        @if (!$penjualan->isEmpty() )
+
+                        <a class="dropdown-item" href="{{ route('user.cicilan') }}">
+                            <i class="fa fa-home"></i>
+                            <span class="align-middle">Your Property</span>
+                        </a>
+                        @elseif (!$booking->isEmpty())
+                        <a class="dropdown-item" href="{{ route('user.book.detail' , $booking->first()->id) }}">
                             <i class="fa fa-home"></i>
                             <span class="align-middle">Book Property</span>
                         </a>
+                        @endif
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('user.logout') }}">
                             <i class="fa fa-sign-out"></i>

@@ -28,12 +28,12 @@ class SpesifikasiController extends Controller
         return redirect()->back()->with('success', 'Berhasil Menambahkan Data Spesifikasi');
     }
 
-    public function edit(Spesifikasi $speks)
+    public function edit(Spesifikasi $spek)
     {
-        return view('pages.admin.spesifikasi-edit', compact('speks'));
+        return view('pages.admin.spesifikasi-edit', compact('spek'));
     }
 
-    public function update(Request $request, Spesifikasi $speks)
+    public function update(Request $request, Spesifikasi $spek)
     {
         $data = $request->validate([
             'nama_spesifikasi' => 'required',
@@ -43,9 +43,9 @@ class SpesifikasiController extends Controller
             'wc' => 'required',
         ]);
 
-        $speks = Spesifikasi::find($speks->id);
+        $spek = Spesifikasi::find($spek->id);
 
-        $speks->update($data);
+        $spek->update($data);
         return redirect()->back()->with('success', 'Spesifikasi updated successfully');
     }
 

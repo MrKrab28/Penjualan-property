@@ -5,6 +5,7 @@ use App\Http\Controllers\User\PropertyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\User\BookingController;
+use App\Http\Controllers\User\CicilanController;
 use App\Http\Controllers\User\HomeController;
 use App\Models\Property;
 
@@ -22,6 +23,7 @@ Route::middleware(['guest:user,admin'])->group(function () {
 Route::middleware('auth:user')->group(function () {
     Route::get('/user/index', [HomeController::class, 'index'])->name('user.index');
     Route::get('/user/logout', [AuthController::class, 'logoutUser'])->name('user.logout');
+    Route::get('/about', [HomeController::class, 'about'])->name('user.about');
 
 
     Route::get('/property', [PropertyController::class, 'index'])->name('user.property');
@@ -32,9 +34,13 @@ Route::middleware('auth:user')->group(function () {
     Route::get('/property/books/{property}', [BookingController::class, 'index'])->name('user.book');
 
     Route::post('/books/add', [BookingController::class, 'store'])->name('user.book.store');
-    Route::get('/books/edit/{booking}', [BookingController::class, 'edit'])->name('user.book.edit');
+    Route::get('/books/detail/{booking}', [BookingController::class, 'detail'])->name('user.book.detail');
     Route::put('/books/update/{booking}', [BookingController::class, 'update'])->name('user.book.update');
     Route::delete('/books/delete/{booking}', [BookingController::class, 'destroy'])->name('user.book.delete');
 
+
+    // penjualan
+    Route::get('/transaksi/penjualan/detail', [CicilanController::class, 'index'])->name('user.cicilan');
+    Route::post('/transaksi/penjualan/add', [PenjualanController::class, 'store'])->name('user.penjualan.store');
 
 });

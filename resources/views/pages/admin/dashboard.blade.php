@@ -89,60 +89,56 @@
 
 <x-layout>
     <h4 class="fw-bold py-3 mb-4">Dashboard</h4>
-    {{-- <div class="row mb-lg-4">
-        <div class="col-md-3">
+    <div class="row mb-lg-4">
+        <div class="col-md-4">
             <div class="card my-2 my-md-0">
                 <div class="card-body">
-                    <span class="fw-semibold d-block mb-1">Total Users</span>
-                    <h3 class="card-title mb-2">{{ number_format($users) }}</h3>
+                    <span class="fw-semibold d-block mb-1">Properties</span>
+                    <h3 class="card-title mb-2">{{ number_format($properties) }}</h3>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card my-2 my-md-0">
                 <div class="card-body">
-                    <span class="fw-semibold d-block mb-1">Grip Stocks</span>
-                    <h3 class="card-title mb-2">{{ number_format($grips) }}</h3>
+                    <span class="fw-semibold d-block mb-1">Penjualan</span>
+                    <h3 class="card-title mb-2">{{ number_format($penjualan) }}</h3>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="card my-2 my-md-0">
                 <div class="card-body">
-                    <span class="fw-semibold d-block mb-1">Shaft Stocks</span>
-                    <h3 class="card-title mb-2">{{ number_format($shafts) }}</h3>
+                    <span class="fw-semibold d-block mb-1">Bookings</span>
+                    <h3 class="card-title mb-2">{{ number_format($booking) }}</h3>
                 </div>
             </div>
         </div>
-        <div class="col-md-3">
+
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+
+                <div class="card my-2 my-md-0">
+                    <div class="card-body">
+                        <span class="fw-semibold d-block mb-1">Property Lunas</span>
+                        <h3 class="card-title mb-2">{{ number_format($cicilanLunas) }}</h3>
+                    </div>
+                </div>
+
+
+
+
+        </div>
+        <div class="col-md-6">
             <div class="card my-2 my-md-0">
                 <div class="card-body">
-                    <span class="fw-semibold d-block mb-1">Club Head Stocks</span>
-                    <h3 class="card-title mb-2">{{ number_format(0) }}</h3>
+                    <span class="fw-semibold d-block mb-1">Property Belum Lunas</span>
+                    <h3 class="card-title mb-2">{{ number_format($cicilanBelumLunas) }}</h3>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="card my-2 my-lg-0">
-                <h5 class="card-header m-0 pb-3">Weekly Sales</h5>
-                <div id="weeklySalesChart" class="px-2"></div>
-            </div>
-        </div>
 
-        <div class="col-lg-4">
-            <div class="card mb-2">
-                <div class="card-body">
-                    <span class="fw-semibold d-block mb-1">Sales Today</span>
-                    <h3 class="card-title mb-2">Rp. {{ number_format($todaySales) }}</h3>
-                </div>
-            </div>
-            <div class="card mt-3">
-                <h5 class="card-header m-0 pb-3">Purchases</h5>
-                <div id="purchasesPie" class="px-2"></div>
-            </div>
-        </div>
-    </div> --}}
 </x-layout>

@@ -14,11 +14,11 @@ class typeSeeder extends Seeder
     public function run(): void
     {
         $types = [
-            ['nama_type' => 'aselole', 'keterangan' =>  'tidak ada keterangan lebih lanjut'],
-            ['nama_type' => 'aselole', 'keterangan' =>  'tidak ada keterangan lebih lanjut'],
-            ['nama_type' => 'aselole', 'keterangan' =>  'tidak ada keterangan lebih lanjut'],
-            ['nama_type' => 'aselole', 'keterangan' =>  'tidak ada keterangan lebih lanjut'],
-            ['nama_type' => 'aselole', 'keterangan' =>  'tidak ada keterangan lebih lanjut'],
+            ['nama_type' => 'Modern', 'keterangan' =>  'tidak ada keterangan lebih lanjut'],
+            ['nama_type' => 'minamlism', 'keterangan' =>  'tidak ada keterangan lebih lanjut'],
+            ['nama_type' => 'green House', 'keterangan' =>  'tidak ada keterangan lebih lanjut'],
+            ['nama_type' => 'pool House', 'keterangan' =>  'tidak ada keterangan lebih lanjut'],
+            ['nama_type' => 'bungalow', 'keterangan' =>  'tidak ada keterangan lebih lanjut'],
         ];
 
         Type::insert($types);
