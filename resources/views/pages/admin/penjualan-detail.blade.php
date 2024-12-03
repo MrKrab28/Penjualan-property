@@ -8,8 +8,8 @@
                 <div class="card-body">
                     <div class="mb-3">
                         <h5>Foto Ktp</h5>
-                        <img src="{{ asset('img/penjualan/foto_ktp/' . $penjualan->foto_ktp) }}" width="515px"
-                        height="300px" alt="">
+                        <img src="{{ asset('img/penjualan/foto_ktp/' . $penjualan->foto_ktp) }}" width="420px"
+                        height="250px" alt="">
                     </div>
                     @if ($property->images->count() > 0)
                         <x-component.img-carousel id="property" height="300px">
@@ -64,14 +64,14 @@
                                 <div class="mb-3">
                                     <h5 class="mb-0">Nominal - {{ $metodes->nama }} </h5>
                                     <p>
-                                        Rp. {{ $penjualan->nominal_harga }}
+                                        Rp. {{ number_format($penjualan->nominal_harga) }}
                                     </p>
                                 </div>
 
                                 <div class="mb-3">
                                     <h5 class="mb-0">Nominal - DP </h5>
                                     <p>
-                                        Rp. {{ $penjualan->nominal_dp }}
+                                        Rp. {{ number_format($penjualan->nominal_dp) }}
                                     </p>
                                 </div>
 

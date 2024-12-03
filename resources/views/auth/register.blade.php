@@ -7,7 +7,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-    <title>Login | {{ config('app.name') }}</title>
+    <title>Register | {{ config('app.name') }}</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
@@ -50,35 +50,27 @@
                         <!-- Logo -->
                         <div class="app-brand justify-content-center">
                             <a href="/" class="app-brand-link gap-2">
-                                <img src="{{ asset('assets/img/logo.png') }}" alt="" class="app-brand-logo">
+                                <img src="{{ asset('assets/admin/img/LOGO-EMK.png') }}" alt="" class="app-brand-logo">
                             </a>
                         </div>
                         <!-- /Logo -->
                         <h4 class="mb-2">Welcome! 👋</h4>
-                        <form id="formAuthentication" class="mb-3" action="{{ route('authenticate') }}"
+                        <form id="formAuthentication" class="mb-3" action="{{ route('registerUser') }}"
                             method="POST" autocomplete="off">
                             @csrf
+                            <x-form.input label="Name" type="text" name="nama" id="nameInput" :required="true" />
+                            <x-form.input label="Email" type="email" name="email" id="emailInput"
+                                :required="true" />
+                            <x-form.input label="Password" name="password" type="password" id="passwordInput"
+                                :required="true" />
+                            <x-form.input label="Phone Number" type="tel" name="no_hp" id="phoneInput"
+                                :required="true" />
+                            <x-form.select label="Gender" name="jk" id="roleSelect" :required="true">
+                                <option value="LAKI-LAKI">LAKI-LAKI</option>
+                                <option value="PEREMPUAN">PEREMPUAN</option>
+                            </x-form.select>
                             <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="text" class="form-control" id="email" name="email"
-                                    value="{{ old('email') }}" placeholder="Enter your email" required>
-                            </div>
-                            <div class="mb-3 form-password-toggle">
-                                <label for="password" class="form-label">Password</label>
-                                <div class="input-group input-group-merge">
-                                    <input type="password" id="password" class="form-control" name="password"
-                                        placeholder="Enter your password" aria-describedby="password" required>
-                                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="remember-me" name="remember">
-                                    <label class="form-check-label" for="remember-me"> Remember Me </label>
-                                </div>
-                            </div>
-                            <div class="mb-3">
-                                <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                                <button class="btn btn-primary d-grid w-100" type="submit">Sign up</button>
                             </div>
                         </form>
                     </div>

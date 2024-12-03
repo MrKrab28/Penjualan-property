@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\CicilanController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\PenjualanController;
 use App\Http\Controllers\Admin\TransaksiController;
 use App\Http\Controllers\Admin\PropertyImgController;
@@ -95,8 +96,14 @@ Route::middleware('auth:admin')->group( function () {
     Route::delete('/transaksi/cicilan/delete/{cicilan}',[CicilanController::class, 'destroy'])->name('cicilan.delete');
 
 
+    // LAPORAN
+    Route::get('/laporan/penjualan', [LaporanController::class, 'penjualan'])->name('pdf.penjualan');
+    // Route::get('/laporan/keuangan', [LaporanController::class, 'keuangan'])->name('pdf.keuangan');
+    Route::get('/laporan/property', [LaporanController::class, 'property'])->name('pdf.property');
+
+
     // BOOKING
-    Route::get('transaksi/booking', [BookingController::class, 'index'])->name('booking');
+    Route::get('/transaksi/booking', [BookingController::class, 'index'])->name('booking');
     Route::post('/books/add', [BookingController::class, 'store'])->name('book.store');
     Route::get('/books/edit/{booking}', [BookingController::class, 'edit'])->name('book.edit');
     Route::put('/books/update/{booking}', [BookingController::class, 'update'])->name('book.update');

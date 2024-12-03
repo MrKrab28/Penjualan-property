@@ -15,6 +15,7 @@ Route::middleware(['guest:user,admin'])->group(function () {
     Route::get('/', [AuthController::class, 'login'])->name('login');
     Route::get('/register', [AuthController::class, 'regis'])->name('register');
     Route::post('/auth', [AuthController::class, 'authenticate'])->name('authenticate');
+    Route::post('/register', [AuthController::class, 'registerUser'])->name('registerUser');
 });
 
 
@@ -24,6 +25,11 @@ Route::middleware('auth:user')->group(function () {
     Route::get('/user/index', [HomeController::class, 'index'])->name('user.index');
     Route::get('/user/logout', [AuthController::class, 'logoutUser'])->name('user.logout');
     Route::get('/about', [HomeController::class, 'about'])->name('user.about');
+
+
+    Route::get('/profile/{user}', [HomeController::class, 'profile'])->name('user.profile');
+    Route::patch('/profile/{user}/update', [HomeController::class, 'updateProfile'])->name('profile.update');
+
 
 
     Route::get('/property', [PropertyController::class, 'index'])->name('user.property');
@@ -40,7 +46,7 @@ Route::middleware('auth:user')->group(function () {
 
 
     // penjualan
-    Route::get('/transaksi/penjualan/detail', [CicilanController::class, 'index'])->name('user.cicilan');
+    Route::get('/transaksi/penjualan/detail{penjualan}', [CicilanController::class, 'index'])->name('user.cicilan');
     Route::post('/transaksi/penjualan/add', [PenjualanController::class, 'store'])->name('user.penjualan.store');
 
 });

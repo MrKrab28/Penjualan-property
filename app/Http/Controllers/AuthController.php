@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+
 class AuthController extends Controller
 {
     public function login()
@@ -13,8 +15,27 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function regis(){
+    public function regis()
+    {
         return view('auth.register');
+    }
+
+    public function registerUser(Request $request)
+    {
+        $data  = $request->validate([
+            'nama' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required',
+            'jk' => 'required',
+            'no_hp' => 'required|min:11',
+        ]);
+
+        $data['password'] = bcrypt($data['password']);
+        User::create($data);
+
+
+
+        return view('auth.login')->with('success', 'Registrasi Berhasil');
     }
     public function authenticate(Request $request)
     {

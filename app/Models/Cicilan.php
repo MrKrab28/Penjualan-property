@@ -10,5 +10,5 @@ class Cicilan extends Model
     use HasFactory;
 
     protected $table = 'cicilan';
-    protected $fillable = ['id_penjualan', 'nominal_cicilan', 'tgl_cicilan'];
+    protected $fillable = ['penjualan_id', 'nominal_cicilan', 'tgl_cicilan'];
 }

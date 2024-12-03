@@ -11,13 +11,13 @@ class CicilanController extends Controller
 {
     public function index()
     {
-        $penjualan = Penjualan::where('user_id', auth()->user()->id)->get();
-       
-        return view('pages.user.cicilan' ,
-        [
+        $property = Property::first(); // Ambil properti pertama
+        $penjualan = Penjualan::where('user_id', auth()->user()->id)->first();
 
-            'penjualan' => $penjualan
+        return view('pages.user.cicilan', [
+            'penjualan' => $penjualan,
+            'property' => $property,
+
         ]);
-
     }
 }

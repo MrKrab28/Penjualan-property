@@ -70,7 +70,7 @@ return [
 
                 'route-name' => 'property.list',
             ],
-           
+
             [
                 'route-active' => 'metode',
                 'label' => 'Metode',
@@ -103,6 +103,27 @@ return [
         'route-active' => 'laporan',
         'label' => 'Laporan',
         'icon' => 'bx-book',
-        'route-name' => 'penjualan',
+        'route-name' => 'laporan',
+        'submenu' => [
+
+            [
+
+                'route-active' => 'penjualan',
+                'label' => 'Penjualan',
+                'route-name' => 'pdf.penjualan',
+            ],
+            // [
+            //     'route-active' => 'keuangan',
+            //     'label' => 'Keuangan',
+            //     'route-name' => 'pdf.keuangan',
+
+            // ],
+            [
+                'route-active' => 'property',
+                'label' => 'property',
+                'route-name' => 'pdf.property',
+
+            ],
+        ]
     ],
 ];

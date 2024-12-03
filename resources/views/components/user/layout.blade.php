@@ -92,13 +92,16 @@
 
     {{ $slot }}
 
-    <footer class="ftco-footer ftco-section">
+    <footer class="ftco-footer ftco-section" id="footer">
         <div class="container">
             <div class="row mb-5">
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Ecoverde</h2>
-                        <p>Far far away, behind the word mountains, far from the countries.</p>
+                        <h2 class="ftco-heading-2">PT. Edy Mitra Karya</h2>
+                        <p>PT. Edy Mitra Karya adalah perusahaan pengembang properti terpercaya yang telah berdedikasi
+                            membangun hunian berkualitas. Dengan komitmen kami terhadap inovasi,
+                            kualitas, dan kepuasan pelanggan, kami telah berhasil menghadirkan berbagai proyek perumahan
+                            yang mengedepankan kenyamanan dan nilai investasi jangka panjang. </p>
                         <ul class="ftco-footer-social list-unstyled mt-5">
                             <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
                             <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
@@ -107,49 +110,34 @@
                     </div>
                 </div>
                 <div class="col-md">
-                    <div class="ftco-footer-widget mb-4 ml-md-4">
-                        <h2 class="ftco-heading-2">Community</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Search Properties</a>
-                            </li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>For Agents</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Reviews</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>FAQs</a></li>
-                        </ul>
+
+                    <div class="ftco-footer-widget mb-0">
+
+                        <div class="block-23 mb-3">
+                            <div class="contact-container">
+                                <h2 class="ftco-heading-2">Location</h2>
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3974.025616396788!2d119.52683298496586!3d-5.099559638459076!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbefb9fd0eb4971%3A0xbf463be92dcf78c2!2sJl.%20Bumi%20Permata%20Sudiang%202%20No.18%2C%20Sudiang%20Raya%2C%20Kec.%20Biringkanaya%2C%20Kota%20Makassar%2C%20Sulawesi%20Selatan%2090552!5e0!3m2!1sid!2sid!4v1733219871952!5m2!1sid!2sid"
+                                    width="400" height="180" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md">
-                    <div class="ftco-footer-widget mb-4 ml-md-4">
-                        <h2 class="ftco-heading-2">About Us</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Our Story</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Meet the team</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Careers</a></li>
-                        </ul>
-                    </div>
-                </div>
+
+
                 <div class="col-md">
                     <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Company</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>About Us</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Press</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Contact</a></li>
-                            <li><a href="#"><span class="fa fa-chevron-right mr-2"></span>Careers</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md">
-                    <div class="ftco-footer-widget mb-4">
-                        <h2 class="ftco-heading-2">Have a Questions?</h2>
+                        <h2 class="ftco-heading-2">Contact?</h2>
                         <div class="block-23 mb-3">
                             <ul>
-                                <li><span class="icon fa fa-map"></span><span class="text">203 Fake St. Mountain
-                                        View, San Francisco, California, USA</span></li>
-                                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2
-                                            392 3929 210</span></a></li>
+                                <li><span class="icon fa fa-map"></span><span class="text">Perumahan, Jl. Bumi Permata
+                                        Sudiang 2 No.18, Kel.Sudiang Raya, Kec.Biringkanaya, Kota Makassar, Sulawesi
+                                        Selatan 90552</span></li>
+                                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+62
+                                            813 4345 9931</span></a></li>
                                 <li><a href="#"><span class="icon fa fa-envelope pr-4"></span><span
-                                            class="text">info@yourdomain.com</span></a></li>
+                                            class="text">Email: emk.putrakarya@gmail.com</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -162,9 +150,8 @@
                         Copyright &copy;
                         <script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i
-                            class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                            target="_blank">Colorlib</a>
+                        </script> All rights reserved <i class="fa fa-heart" aria-hidden="true"></i> by
+                        <a href="https://colorlib.com" target="_blank">Universitas Islam Makassar</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
                 </div>
@@ -199,23 +186,23 @@
     <script src="{{ asset('assets/user/js/main.js') }}"></script>
     <script src="{{ asset('assets/admin/libs/sweetalert2/sweetalert2.all.min.js') }}"></script>
     @if (Session::has('success'))
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Success',
-            text: '{{ Session::get('success') }}',
-        })
-    </script>
-@endif
-@if (Session::has('error'))
-    <script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Failed',
-            text: '{{ Session::get('error') }}',
-        })
-    </script>
-@endif
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ Session::get('success') }}',
+            })
+        </script>
+    @endif
+    @if (Session::has('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Failed',
+                text: '{{ Session::get('error') }}',
+            })
+        </script>
+    @endif
 </body>
 
 </html>

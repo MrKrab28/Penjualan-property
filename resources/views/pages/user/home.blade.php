@@ -93,7 +93,7 @@
                                                     <span class="sale">Sale</span>
                                                 </div>
                                                 <p class="price"><span class="orig-price text-dark">Rp.
-                                                       {{ $property->hargaCash->nominal }} </span>
+                                                       {{ number_format($property->hargaCash->nominal)  }} </span>
                                                 </p>
                                             </div>
                                         </a>
@@ -212,6 +212,10 @@
                 <div class="row">
                     <div class="col-md-7 order-md-last d-flex align-items-stretch">
                         <div class="img w-100 img-2 mr-md-2" style="background-image: url(images/about.jpg);"></div>
+                        <div class="img w-100 img-2 mr-md-2" style="background-image: url({{ asset('assets/user/images/GERBANG.jpg') }});"></div>
+                        <div class="img w-100 img-2 mr-md-2" style="background-image: url({{ asset('assets/user/images/GERBANG1.jpg') }});"></div>
+                        <div class="img w-100 img-2 mr-md-2" style="background-image: url({{ asset('assets/user/images/GERBANG.jpg') }});"></div>
+                        <div class="img w-100 img-2 mr-md-2" style="background-image: url({{ asset('assets/user/images/GERBANG1.jpg') }});"></div>
                         <div class="img w-100 img-2 ml-md-2" style="background-image: url(images/about-2.jpg);"></div>
                     </div>
                     <div class="col-md-5 wrap-about py-md-5 ftco-animate">

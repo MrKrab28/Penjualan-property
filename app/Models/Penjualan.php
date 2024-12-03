@@ -49,7 +49,7 @@ class Penjualan extends Model
         return Attribute::make(
 
 
-            get: fn() =>  round($this->cicilan->sum('nominal_cicilan'), -3) >= $this->nominal_harga
+            get: fn() =>  round($this->cicilan->sum('nominal_cicilan'), -3) == $this->nominal_harga
 
         );
     }

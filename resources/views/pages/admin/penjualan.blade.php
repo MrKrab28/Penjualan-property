@@ -93,12 +93,17 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $penjualan->nama_property }}</td>
                             <td>{{ $penjualan->users->nama }}</td>
-                            <td>{{ Carbon\Carbon::parse($penjualan->tanggal)->IsoFormat('DD MMMM YY') }}</td>
+                            <td>{{ Carbon\Carbon::parse($penjualan->tanggal)->IsoFormat('DD MMMM YYYY') }}</td>
                             <td>{{ $metodes->where('id', $penjualan->metode)->first()->nama  }}</td>
 
-
-                            {{-- <td>{{ $penjualan->lunas }}</td> --}}
+                            @if ($penjualan->nominal_dp == 0 && $penjualan->lunas == false)
+                            <td class="text-success">Lunas</td>
+                            @elseif ($penjualan->lunas)
                             <td>{!! $penjualan->lunas ?  '<span class="text-success">Lunas</span>' : '<span class="text-danger">Belum Lunas</span>' !!}</td>
+                            @elseif(!$penjualan->lunas)
+                            <td class="text-danger">Belum Lunas</td>
+                            @endif
+                            {{-- <td>{{ $penjualan->lunas }}</td> --}}
 
 
                             <td class="text-center">

@@ -50,7 +50,7 @@
                         <!-- Logo -->
                         <div class="app-brand justify-content-center">
                             <a href="/" class="app-brand-link gap-2">
-                                <img src="{{ asset('assets/img/logo.png') }}" alt="" class="app-brand-logo">
+                                <img src="{{ asset('assets/admin/img/LOGO-EMK.png') }}" alt="" class="app-brand-logo">
                             </a>
                         </div>
                         <!-- /Logo -->
@@ -79,6 +79,7 @@
                             </div>
                             <div class="mb-3">
                                 <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                                <p class="mt-2">Belum Punya Akun?<a href="{{ route('register') }}" >Daftar</a> </p>
                             </div>
                         </form>
                     </div>

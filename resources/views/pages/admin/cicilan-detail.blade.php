@@ -47,7 +47,7 @@
                             <th>#</th>
                             <th>Nominal Angsuran</th>
                             <th>Tanggal Pembayaran</th>
-                            <th>Denda</th>
+
                         </thead>
                         <tbody>
                             @foreach ($penjualan->cicilan as $angsuran)
@@ -55,7 +55,7 @@
                                     <td>{{ $loop->iteration }} </td>
                                     <td>{{ number_format($angsuran->nominal_cicilan) }} </td>
                                     <td>{{ Carbon\Carbon::parse($angsuran->tgl_cicilan)->IsoFormat('DD MMMM YY') }}</td>
-                                    <td>{{ $angsuran->denda }} </td>
+                                   
                                 </tr>
                             @endforeach
 

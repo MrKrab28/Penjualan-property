@@ -22,7 +22,7 @@
                             <div class="rent-sale">
                                 <span class="sale">Sale</span>
                             </div>
-                            <p class="price"><span class="orig-price">Rp. {{ $property->hargaCash->nominal }}</span></p>
+                            <p class="price"><span class="orig-price">Rp. {{ number_format($property->hargaCash->nominal) }}</span></p>
                         </a>
                         <div class="text">
                             <ul class="property_list">
