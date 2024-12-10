@@ -40,7 +40,7 @@
                                 <i class="fa fa-home"></i>
                                 <span class="align-middle">Your Property</span>
                             </a>
-                        @elseif ($booking && $booking->status == 'diterima')
+                        @elseif ($booking && $booking->status)
                             <a class="dropdown-item" href="{{ route('user.book.detail', $booking->id) }}">
                                 <i class="fa fa-home"></i>
                                 <span class="align-middle">Book Property</span>

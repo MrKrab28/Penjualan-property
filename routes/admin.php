@@ -119,5 +119,5 @@ Route::middleware('auth:admin')->group( function () {
     Route::post('property/metode/add', [MetodeController::class, 'store'])->name('metode.store');
     Route::get('property/metode/edit/{metode}', [MetodeController::class, 'edit'])->name('metode.edit');
     Route::put('property/metode/update/{metode}', [MetodeController::class, 'update'])->name('metode.update');
-    Route::delete('property/metode/delete/{metode}', [MetodeController::class, 'delete'])->name('metode.delete');
+    Route::delete('property/metode/delete/{metode}', [MetodeController::class, 'destroy'])->name('metode.delete');
 });

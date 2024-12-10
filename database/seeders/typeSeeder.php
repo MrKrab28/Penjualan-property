@@ -14,11 +14,8 @@ class typeSeeder extends Seeder
     public function run(): void
     {
         $types = [
-            ['nama_type' => 'Modern', 'keterangan' =>  'tidak ada keterangan lebih lanjut'],
-            ['nama_type' => 'minamlism', 'keterangan' =>  'tidak ada keterangan lebih lanjut'],
-            ['nama_type' => 'green House', 'keterangan' =>  'tidak ada keterangan lebih lanjut'],
-            ['nama_type' => 'pool House', 'keterangan' =>  'tidak ada keterangan lebih lanjut'],
-            ['nama_type' => 'bungalow', 'keterangan' =>  'tidak ada keterangan lebih lanjut'],
+            ['nama_type' => 'Type 45', 'keterangan' =>  'Rumah Type 45 45/72 (6x12)'],
+            ['nama_type' => 'Type 62', 'keterangan' =>  'Rumah Type 62 62/84 (6x14)'],
         ];
 
         Type::insert($types);

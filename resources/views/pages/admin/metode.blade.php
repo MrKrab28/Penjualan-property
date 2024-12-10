@@ -39,7 +39,12 @@
 
                                 <x-component.button-icon label="Edit" color="primary" icon="bx-detail"
                                     href="{{ route('metode.edit', $metode->id) }}" :small="true" />
-
+                                    <form action="{{ route('metode.delete', $metode->id) }}" class="d-inline" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <x-component.button type="submit" label="Delete" color="danger"
+                                            :small="true" />
+                                    </form>
 
                             </td>
                         </tr>

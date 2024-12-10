@@ -63,13 +63,13 @@
                                 <div class="mb-3">
                                     <h5 class="mb-0">Nominal - {{ $harga->metode->nama }}</h5>
                                     <p>
-                                        Rp. {{ $harga->nominal }}
+                                        Rp.  {{ number_format($harga->nominal) }}
                                     </p>
                                 </div>
                                 <div class="mb-3">
                                     <h5 class="mb-0">Nominal Dp - {{ $harga->metode->nama }}</h5>
                                     <p>
-                                        Rp. {{ $harga->nominal_dp }}
+                                        Rp.  {{ number_format($harga->nominal_dp) }}
                                     </p>
                                 </div>
                             @endforeach

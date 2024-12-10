@@ -18,7 +18,7 @@
                     <h5 class="mb-0">Property</h5>
                     <p>{{ $penjualan->nama_property }}</p>
                     <h5 class="mb-0">Harga Property</h5>
-                    <p>Rp. {{ $penjualan->nominal_harga }}</p>
+                    <p>Rp. {{ number_format($penjualan->nominal_harga) }}</p>
                     <h5 class="mb-0">Banyak Cicilan</h5>
                     <p>{{ $penjualan->jumlah_pembayaran }} x</p>
                     <h5 class="mb-0">Sisa Cicilan</h5>
@@ -55,7 +55,7 @@
                                     <td>{{ $loop->iteration }} </td>
                                     <td>{{ number_format($angsuran->nominal_cicilan) }} </td>
                                     <td>{{ Carbon\Carbon::parse($angsuran->tgl_cicilan)->IsoFormat('DD MMMM YY') }}</td>
-                                   
+
                                 </tr>
                             @endforeach
 

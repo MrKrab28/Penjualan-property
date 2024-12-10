@@ -57,8 +57,8 @@
                             <div class="mt-3">
                                 <h4 class="mb-0">{{ $property->property }} - {{ $property->types->nama_type }}</h4>
                                 <p>{{ $property->spesifikasi->nama_spesifikasi }}</p>
-                                <p><strong>Lokasi:</strong> {{ $property->lokasi }}</p>
-                                <p><strong>Harga:</strong> Rp.
+                                <p><strong>Lokasi : </strong> {{ $property->lokasi }}</p>
+                                <p><strong>Harga : </strong> Rp.
                                     {{ number_format($property->hargaCash->nominal, 0, ',', '.') }}</p>
                             </div>
                         </div>
@@ -82,14 +82,20 @@
                                 <h5 class="mb-0">Email</h5>
                                 <p>{{ auth()->user()->email }}</p>
                                 <h5 class="mb-0">No.Rekening</h5>
+                                <p>{{ $penjualan->no_rek }}</p>
 
                             </div>
                             <div class="col-md-6">
-                                <p>{{ $penjualan->no_rek }}</p>
                                 <h5 class="mb-0">Property</h5>
                                 <p>{{ $penjualan->nama_property }}</p>
                                 <h5 class="mb-0">Harga Property</h5>
-                                <p>Rp. {{ $penjualan->nominal_harga }}</p>
+                                <p>Rp. {{ number_format($penjualan->nominal_harga) }}</p>
+                                <h5 class="mb-0">Nominal Angsuran</h5>
+                                {{-- <p>Rp. {{ number_format($penjualan->nominal_harga / $penjualan->jumlah_pembayaran) }}</p> --}}
+                                <p>Rp. {{ number_format(round($penjualan->nominal_harga / $penjualan->jumlah_pembayaran)) }}
+
+
+                                </p>
                                 <h5 class="mb-0">Banyak Cicilan</h5>
                                 <p>{{ $penjualan->jumlah_pembayaran }} x</p>
                                 <h5 class="mb-0">Sisa Cicilan</h5>
@@ -110,7 +116,7 @@
                                             @forelse ($penjualan->cicilan as $angsuran)
                                                 <tr>
                                                     <td>{{ $loop->iteration }} </td>
-                                                    <td>{{ number_format($angsuran->nominal_cicilan) }} </td>
+                                                    <td>Rp. {{ number_format($angsuran->nominal_cicilan) }} </td>
                                                     <td>{{ Carbon\Carbon::parse($angsuran->tgl_cicilan)->IsoFormat('DD MMMM YY') }}
                                                     </td>
 
@@ -118,7 +124,7 @@
                                             @empty
                                                 <tr>
 
-                                                    <td colspan="3" class="text-center">Property Telah Lunas</td>
+                                                    <td colspan="3" class="text-center">Tidak Ada Data </td>
                                                 </tr>
                                             @endforelse
 

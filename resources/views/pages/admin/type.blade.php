@@ -33,6 +33,7 @@
                                     @csrf
                                     <x-component.button type="submit" label="Delete" color="danger"
                                         :small="true" />
+                                </form>
                             </td>
                         </tr>
                     @endforeach

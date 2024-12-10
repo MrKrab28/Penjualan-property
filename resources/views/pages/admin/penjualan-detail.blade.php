@@ -28,8 +28,9 @@
                     @endif
                     <div class="mt-3">
                         <h4 class="mb-0">{{ $penjualan->nama_property }} - {{ $penjualan->nama_type }}</h4>
-                        <p>{{ $penjualan->nominal_harga }}</p>
-                        <p>{{ $penjualan->nominal_dp }}</p>
+                        {{-- <p>Rp.{{ number_format($penjualan->nominal_harga)  }}</p>
+
+                        <p>Rp.{{ number_format($penjualan->nominal_dp)  }}</p> --}}
                     </div>
 
                 </div>
@@ -116,7 +117,7 @@
 
                             @endif
                             {{-- @can('delete', $property) --}}
-                            <form action="{{ route('penjualan.delete', $property) }}" method="post" class="d-inline">
+                            <form action="{{ route('penjualan.delete', $penjualan) }}" method="post" class="d-inline">
                                 @csrf
                                 @method('delete')
                                 <x-component.button-icon icon="bx-trash" label="Delete" color="danger" type="submit" />

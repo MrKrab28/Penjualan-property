@@ -1,6 +1,6 @@
 <x-user.layout title="PT. Edy Mitra Karya">
 
-   
+
     <div class="">
 
         <section class="ftco-section ftco-no-pt mt-0 mb-0">

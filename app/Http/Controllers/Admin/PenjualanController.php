@@ -124,6 +124,6 @@ class PenjualanController extends Controller
     public function destroy(Penjualan $penjualan)
     {
         $penjualan->delete();
-        return redirect()->back()->with('success', 'Berhasil Menghapus Data Penjualan');
+        return redirect()->route('penjualan')->with('success', 'Berhasil Menghapus Data Penjualan');
     }
 }
