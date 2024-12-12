@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
 use App\Models\Harga;
 use App\Models\Metode;
 use App\Models\Cicilan;
@@ -45,5 +46,19 @@ class LaporanController extends Controller
             'propertyPrices' => $propertyPrices
         ]);
         return $pdf->stream('laporan-property.pdf');
+    }
+
+    public function user()
+    {
+        $penjualan = Penjualan::all()->pluck('user_id');
+        $users = User::where('id', $penjualan)->get();
+
+        // Render PDF menggunakan Blade view
+        $pdf = Pdf::loadView('pages.admin.laporan-user', [
+            'users' => $users
+        ]);
+
+        // Return PDF untuk di-stream atau di-download
+        return $pdf->stream('laporan-user.pdf');
     }
 }

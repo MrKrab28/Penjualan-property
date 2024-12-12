@@ -98,6 +98,7 @@ Route::middleware('auth:admin')->group( function () {
 
     // LAPORAN
     Route::get('/laporan/penjualan', [LaporanController::class, 'penjualan'])->name('pdf.penjualan');
+    Route::get('/laporan/user', [LaporanController::class, 'user'])->name('pdf.user');
     // Route::get('/laporan/keuangan', [LaporanController::class, 'keuangan'])->name('pdf.keuangan');
     Route::get('/laporan/property', [LaporanController::class, 'property'])->name('pdf.property');
 

@@ -69,75 +69,124 @@
         </div>
     </div>
 
-    <h3>Laporan Property</h3>
+    <h3>Laporan User</h3>
 
     <!-- Pembungkus tabel untuk responsivitas -->
-    <div class="table-wrapper">
-        <table>
-            <thead>
-                @php
-                    $allMetodes = [];
-                    $allHarga = [];
-                    foreach ($property as $item) {
-                        foreach ($item->harga as $harga) {
-                            $allMetodes[$harga->metode->nama] = $harga->metode->nama;
-                            $allHarga[$harga->metode->nama] = $harga->nominal_dp;
-                        }
-                    }
-                @endphp
-                <tr>
-                    <th rowspan="2" width="4%">No</th>
-                    <th rowspan="2">Property</th>
-                    <th rowspan="2">Type</th>
-                    <th rowspan="2">Luas Bangunan</th>
-                    <th rowspan="2">Luas Tanah</th>
-                    <th rowspan="2">Blok / No</th>
-                    <th colspan="{{ count($allMetodes) }}">Harga</th>
-                    <th colspan="{{ count($allMetodes) }}">Harga DP</th> <!-- Menggunakan jumlah allMetodes untuk Harga DP -->
-                </tr>
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Penjualan</h3>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h5>Foto Ktp</h5>
+                        <img src="{{ asset('img/penjualan/foto_ktp/' . $penjualan->foto_ktp) }}" width="420px"
+                        height="250px" alt="">
+                    </div>
+                    @if ($property->images->count() > 0)
+                        <x-component.img-carousel id="property" height="300px">
+                            @foreach ($property->images as $image)
+                                <div class="carousel-item @if ($loop->first) active @endif">
+                                    <img src="{{ asset('img/properties/' . $image->filename) }}" class="d-block"
+                                        alt="{{ $image->filename }}">
+                                </div>
+                            @endforeach
+                        </x-component.img-carousel>
+                    @else
+                        <div class="d-flex justify-content-center align-items-center bg-secondary rounded mb-5"
+                            style="height: 300px">
+                            <span class="text-white">No Image</span>
+                        </div>
+                    @endif
+                    <div class="mt-3">
+                        <h4 class="mb-0">{{ $penjualan->nama_property }} - {{ $penjualan->nama_type }}</h4>
+                        {{-- <p>Rp.{{ number_format($penjualan->nominal_harga)  }}</p>
 
-                <tr>
-                    @foreach ($allMetodes as $metode)
-                        <th>{{ $metode }}</th>
-                    @endforeach
-                    @foreach ($allMetodes as $metode)
-                        <th>{{ $metode }} </th> <!-- Menambahkan kolom Harga DP untuk setiap metode -->
-                    @endforeach
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($property as $item)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->property }}</td>
-                        <td>{{ $item->types->nama_type }}</td>
-                        <td>{{ $item->spesifikasi->luas_bangunan }}</td>
-                        <td>{{ $item->spesifikasi->luas_tanah }} m<sup>2</sup></td>
-                        <td>{{ $item->lokasi }}</td>
+                        <p>Rp.{{ number_format($penjualan->nominal_dp)  }}</p> --}}
+                    </div>
 
-                        <!-- Menampilkan harga untuk setiap metode -->
-                        @foreach ($allMetodes as $metode)
-                            @php
-                                $hargaMetode = $item->harga->firstWhere('metode.nama', $metode);
-                            @endphp
-                            <td>{{ $hargaMetode ? 'Rp. ' . number_format($hargaMetode->nominal) : '-' }}</td>
-                        @endforeach
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <div class="card my-2 my-md-0">
+                <div class="card-header">
+                    <h3 class="card-title">Penjualan Detail</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
 
-                        <!-- Menampilkan harga DP untuk setiap metode -->
-                        @foreach ($allMetodes as $metode)
-                            @php
-                                $harga_dp = $item->harga->firstWhere('metode.nama', $metode);
-                            @endphp
-                            <td>{{ $harga_dp ? 'Rp. ' . number_format($harga_dp->nominal_dp) : '-' }}</td>
-                        @endforeach
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="{{ 6 + count($allMetodes) * 2 }}" class="text-center">Tidak ada data</td> <!-- Perbaikan pada kolom total -->
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
+
+                            <div class="mb-3">
+                                <h5 class="mb-0">Property</h5>
+                                <p>{{ $property->property }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h5 class="mb-0">Lokasi</h5>
+                                <p>{{ $property->lokasi }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h5 class="mb-0">Type</h5>
+                                <p>{{ $property->types->nama_type }}</p>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+
+                                <div class="mb-3">
+                                    <h5 class="mb-0">Nominal - {{ $metodes->nama }} </h5>
+                                    <p>
+                                        Rp. {{ number_format($penjualan->nominal_harga) }}
+                                    </p>
+                                </div>
+
+                                <div class="mb-3">
+                                    <h5 class="mb-0">Nominal - DP </h5>
+                                    <p>
+                                        Rp. {{ number_format($penjualan->nominal_dp) }}
+                                    </p>
+                                </div>
+
+                        </div>
+
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="mb-5 mt-1">
+                            <h4 class="mb-0">Spesifikasi</h4>
+                            <p>{{ $property->spesifikasi->nama_spesifikasi }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <h5 class="mb-0">Luas Tanah</h5>
+                                <p>{{ $property->spesifikasi->luas_tanah }} (m<sup>2</sup>)</p>
+                            </div>
+                            <div class="mb-3">
+
+                                <h5 class="mb-0">Jumlah Kamar</h5>
+                                <p>{{ $property->spesifikasi->kamar }}</p>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <h5 class="mb-0">Luas Bangunan</h5>
+                                <p>{{ $property->spesifikasi->luas_bangunan }} (m<sup>2</sup>)</p>
+                            </div>
+
+                            <div class="mb-3">
+                                <h5 class="mb-0">Jumlah Toilet</h5>
+                                <p>{{ $property->spesifikasi->wc }}</p>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 

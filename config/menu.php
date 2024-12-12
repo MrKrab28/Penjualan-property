@@ -120,8 +120,14 @@ return [
             // ],
             [
                 'route-active' => 'property',
-                'label' => 'property',
+                'label' => 'Property',
                 'route-name' => 'pdf.property',
+
+            ],
+            [
+                'route-active' => 'user',
+                'label' => 'User-Property',
+                'route-name' => 'pdf.user',
 
             ],
         ]
