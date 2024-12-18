@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan Penjualan</title>
+    <title>Laporan Property</title>
     <style>
-        @page {
+         @page {
             size: A4 landscape;
             margin: 5mm;
         }
@@ -65,129 +65,61 @@
         <h3>PT. EDI MITRA KARYA INDONESIA</h3>
         <div class="sekret">
             <p>Perumahan, Jl. Bumi Permata Sudiang 2 No.18, Kel.Sudiang Raya, Kec.Biringkanaya, Kota Makassar, Sulawesi Selatan 90552</p>
-            <p>Email: Email: emk.putrakarya@gmail.com</p>
+            <p>Email: emk.putrakarya@gmail.com</p>
         </div>
     </div>
 
-    <h3>Laporan User</h3>
+    <h3 style="margin-bottom: 10px">Laporan Property</h3>
+    <table style="width: 100%;">
+        <thead>
+            <tr>
+                <th width="3%">No</th>
+                <th>Type</th>
+                <th>Blok/No</th>
+                <th>Luas Tanah</th>
+                <th>Metode</th>
+                <th>Harga</th>
+                <th>Nominal Dp</th>
+                <th>Nominal Angsuran</th>
+                <th>Tenor</th>
+                <th>Pembeli</th>
+                <th>Tanggal</th>
 
-    <!-- Pembungkus tabel untuk responsivitas -->
-    <div class="row">
-        <div class="col-lg-5">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Penjualan</h3>
-                </div>
-                <div class="card-body">
-                    <div class="mb-3">
-                        <h5>Foto Ktp</h5>
-                        <img src="{{ asset('img/penjualan/foto_ktp/' . $penjualan->foto_ktp) }}" width="420px"
-                        height="250px" alt="">
-                    </div>
-                    @if ($property->images->count() > 0)
-                        <x-component.img-carousel id="property" height="300px">
-                            @foreach ($property->images as $image)
-                                <div class="carousel-item @if ($loop->first) active @endif">
-                                    <img src="{{ asset('img/properties/' . $image->filename) }}" class="d-block"
-                                        alt="{{ $image->filename }}">
-                                </div>
-                            @endforeach
-                        </x-component.img-carousel>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($penjualans as $penjualan)
+                    @php
+                        $namaMetode = $metodes->where('id', $penjualan->metode)->first();
+                        $hargaProperty = $hargas->where('nominal', $penjualan->nominal_harga)->first();
+                        $nominal_cicilan = $hargaProperty->nominal / $penjualan->jumlah_pembayaran;
+                        $property = $properties->where('property', $penjualan->nama_property)->first();
+                    @endphp
+                <tr>
+                    <td >{{ $loop->iteration }}</td>
+                    <td>{{ $penjualan->nama_type }}</td>
+                    <td>{{ $hargaProperty->properties->lokasi }}</td>
+                    <td>{{ $property->spesifikasi->luas_tanah }} m2</td>
+                    <td>{{ $namaMetode->nama }}</td>
+                    <td>Rp.{{ number_format($hargaProperty->nominal) }}</td>
+                    <td>Rp.{{ number_format( $penjualan->nominal_dp) }}</td>
+                    @if ($penjualan->nominal_dp == 0 && $penjualan->lunas == false)
+                    <td class="text-success">Rp. - </td>
                     @else
-                        <div class="d-flex justify-content-center align-items-center bg-secondary rounded mb-5"
-                            style="height: 300px">
-                            <span class="text-white">No Image</span>
-                        </div>
+                    <td>Rp.{{ number_format(round($nominal_cicilan))   }}</td>
                     @endif
-                    <div class="mt-3">
-                        <h4 class="mb-0">{{ $penjualan->nama_property }} - {{ $penjualan->nama_type }}</h4>
-                        {{-- <p>Rp.{{ number_format($penjualan->nominal_harga)  }}</p>
+                    <td>{{ $namaMetode->jumlah_pembayaran }}x</td>
+                    <td>{{ $penjualan->users->nama }}</td>
+                    <td>{{ Carbon\Carbon::parse($penjualan->tanggal)->isoFormat('DD MMMM YYYY') }}</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="9" class="text-center">Tidak ada data</td>
+                </tr>
+            @endforelse
 
-                        <p>Rp.{{ number_format($penjualan->nominal_dp)  }}</p> --}}
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-7">
-            <div class="card my-2 my-md-0">
-                <div class="card-header">
-                    <h3 class="card-title">Penjualan Detail</h3>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-6">
-
-
-                            <div class="mb-3">
-                                <h5 class="mb-0">Property</h5>
-                                <p>{{ $property->property }}</p>
-                            </div>
-                            <div class="mb-3">
-                                <h5 class="mb-0">Lokasi</h5>
-                                <p>{{ $property->lokasi }}</p>
-                            </div>
-                            <div class="mb-3">
-                                <h5 class="mb-0">Type</h5>
-                                <p>{{ $property->types->nama_type }}</p>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6">
-
-                                <div class="mb-3">
-                                    <h5 class="mb-0">Nominal - {{ $metodes->nama }} </h5>
-                                    <p>
-                                        Rp. {{ number_format($penjualan->nominal_harga) }}
-                                    </p>
-                                </div>
-
-                                <div class="mb-3">
-                                    <h5 class="mb-0">Nominal - DP </h5>
-                                    <p>
-                                        Rp. {{ number_format($penjualan->nominal_dp) }}
-                                    </p>
-                                </div>
-
-                        </div>
-
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="mb-5 mt-1">
-                            <h4 class="mb-0">Spesifikasi</h4>
-                            <p>{{ $property->spesifikasi->nama_spesifikasi }}</p>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <h5 class="mb-0">Luas Tanah</h5>
-                                <p>{{ $property->spesifikasi->luas_tanah }} (m<sup>2</sup>)</p>
-                            </div>
-                            <div class="mb-3">
-
-                                <h5 class="mb-0">Jumlah Kamar</h5>
-                                <p>{{ $property->spesifikasi->kamar }}</p>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <h5 class="mb-0">Luas Bangunan</h5>
-                                <p>{{ $property->spesifikasi->luas_bangunan }} (m<sup>2</sup>)</p>
-                            </div>
-
-                            <div class="mb-3">
-                                <h5 class="mb-0">Jumlah Toilet</h5>
-                                <p>{{ $property->spesifikasi->wc }}</p>
-                            </div>
-
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        </tbody>
+    </table>
 </body>
 
 </html>
