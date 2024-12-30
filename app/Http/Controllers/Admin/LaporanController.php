@@ -54,11 +54,16 @@ class LaporanController extends Controller
         $users = User::where('id', $penjualan)->get();
 
         // Render PDF menggunakan Blade view
-        $pdf = Pdf::loadView('pages.admin.laporan-user', [
-            'users' => $users
-        ]);
+
 
         // Return PDF untuk di-stream atau di-download
+        return view('pages.admin.laporan-user', compact(['users']));
+    }
+
+    public function cetakUser(User $user)
+    {
+        $penjualan = Penjualan::where('user_id', $user->id)->get();
+        $pdf = PDF::loadview('pages.admin.laporan-user-cetak', ['users' => $user, 'penjualans' => $penjualan]);
         return $pdf->stream('laporan-user.pdf');
     }
 }
