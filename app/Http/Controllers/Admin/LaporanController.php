@@ -64,6 +64,7 @@ class LaporanController extends Controller
     {
         $penjualan = Penjualan::where('user_id', $user->id)->get();
         $pdf = PDF::loadview('pages.admin.laporan-user-cetak', ['users' => $user, 'penjualans' => $penjualan]);
+
         return $pdf->stream('laporan-user.pdf');
     }
 }

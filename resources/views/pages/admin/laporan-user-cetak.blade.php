@@ -88,7 +88,7 @@
 
 
         <div class="text-center">
-            <img src="{{ asset('assets/admin/img/LOGO-EMK.png') }}" width="100">
+            <img src="{{ public_path('assets/admin/img/LOGO-EMK.png') }}" width="100">
             <h3>PT. EDI MITRA KARYA INDONESIA</h3>
             <div class="sekret">
                 <p>Perumahan, Jl. Bumi Permata Sudiang 2 No.18, Kel.Sudiang Raya, Kec.Biringkanaya, Kota
@@ -105,10 +105,7 @@
 
 
             <div class="text-center">
-                <img src="{{ asset('img/foto_ktp/' . $users->foto_ktp) }}" width="200" alt="Foto KTP">
-
-
-
+                <img src="{{ public_path('img/penjualan/foto_ktp/' . $penjualans[0]->foto_ktp) }}" width="200px">
             </div>
 
 
