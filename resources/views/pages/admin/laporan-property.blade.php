@@ -70,47 +70,33 @@
     </div>
 
     <h3 style="margin-bottom: 10px">Laporan Property</h3>
-    <table style="width: 100%;">
+    {{-- <table style="width: 100%;">
         <thead>
             <tr>
                 <th width="3%">No</th>
+                <th>Property</th>
                 <th>Type</th>
                 <th>Blok/No</th>
                 <th>Luas Tanah</th>
-                <th>Metode</th>
+                <th>Luas Bangunan</th>
                 <th>Harga</th>
-                <th>Nominal Dp</th>
-                <th>Nominal Angsuran</th>
-                <th>Tenor</th>
-                <th>Pembeli</th>
-                <th>Tanggal</th>
+
 
             </tr>
         </thead>
         <tbody>
-            @forelse ($penjualans as $penjualan)
-                    @php
-                        $namaMetode = $metodes->where('id', $penjualan->metode)->first();
-                        $hargaProperty = $hargas->where('nominal', $penjualan->nominal_harga)->first();
-                        $nominal_cicilan = $hargaProperty->nominal / $penjualan->jumlah_pembayaran;
-                        $property = $properties->where('property', $penjualan->nama_property)->first();
-                    @endphp
+            @forelse ($property as $property)
+
                 <tr>
                     <td >{{ $loop->iteration }}</td>
-                    <td>{{ $penjualan->nama_type }}</td>
-                    <td>{{ $hargaProperty->properties->lokasi }}</td>
+                    <td>{{ $property->property }}</td>
+                    <td>{{ $property->types->nama_type }}</td>
+                    <td>{{ $property->lokasi }}</td>
                     <td>{{ $property->spesifikasi->luas_tanah }} m2</td>
-                    <td>{{ $namaMetode->nama }}</td>
-                    <td>Rp.{{ number_format($hargaProperty->nominal) }}</td>
-                    <td>Rp.{{ number_format( $penjualan->nominal_dp) }}</td>
-                    @if ($penjualan->nominal_dp == 0 && $penjualan->lunas == false)
-                    <td class="text-success">Rp. - </td>
-                    @else
-                    <td>Rp.{{ number_format(round($nominal_cicilan))   }}</td>
-                    @endif
-                    <td>{{ $namaMetode->jumlah_pembayaran }}x</td>
-                    <td>{{ $penjualan->users->nama }}</td>
-                    <td>{{ Carbon\Carbon::parse($penjualan->tanggal)->isoFormat('DD MMMM YYYY') }}</td>
+                    <td>{{ $property->spesifikasi->luas_bangunan }} m2</td>
+                    <td>{{ $property->spesifikasi->nama_spesifikasi }}</td>
+
+
                 </tr>
             @empty
                 <tr>
@@ -119,7 +105,70 @@
             @endforelse
 
         </tbody>
-    </table>
+    </table> --}}
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                @php
+                    $allMetodes = [];
+                    $allHarga = [];
+                    foreach ($property as $item) {
+                        foreach ($item->harga as $harga) {
+                            $allMetodes[$harga->metode->nama] = $harga->metode->nama;
+                            $allHarga[$harga->metode->nama] = $harga->nominal_dp;
+                        }
+                    }
+                @endphp
+                <tr>
+                    <th rowspan="2" width="4%">No</th>
+                    <th rowspan="2">Property</th>
+                    <th rowspan="2">Type</th>
+                    <th rowspan="2">Luas Bangunan</th>
+                    <th rowspan="2">Luas Tanah</th>
+                    <th rowspan="2">Blok / No</th>
+                    <th colspan="{{ count($allMetodes) }}">Harga</th>
+                    <th colspan="{{ count($allMetodes) }}">Harga DP</th> <!-- Menggunakan jumlah allMetodes untuk Harga DP -->
+                </tr>
+                <tr>
+                    @foreach ($allMetodes as $metode)
+                        <th>{{ $metode }}</th>
+                    @endforeach
+                    @foreach ($allMetodes as $metode)
+                        <th>{{ $metode }} </th> <!-- Menambahkan kolom Harga DP untuk setiap metode -->
+                    @endforeach
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($property as $item)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->property }}</td>
+                        <td>{{ $item->types->nama_type }}</td>
+                        <td>{{ $item->spesifikasi->luas_bangunan }} m<sup>2</sup></td>
+                        <td>{{ $item->spesifikasi->luas_tanah }} m<sup>2</sup></td>
+                        <td>{{ $item->lokasi }}</td>
+                        <!-- Menampilkan harga untuk setiap metode -->
+                        @foreach ($allMetodes as $metode)
+                            @php
+                                $hargaMetode = $item->harga->firstWhere('metode.nama', $metode);
+                            @endphp
+                            <td>{{ $hargaMetode ? 'Rp. ' . number_format($hargaMetode->nominal) : '-' }}</td>
+                        @endforeach
+                        <!-- Menampilkan harga DP untuk setiap metode -->
+                        @foreach ($allMetodes as $metode)
+                            @php
+                                $harga_dp = $item->harga->firstWhere('metode.nama', $metode);
+                            @endphp
+                            <td>{{ $harga_dp ? 'Rp. ' . number_format($harga_dp->nominal_dp) : '-' }}</td>
+                        @endforeach
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="{{ 6 + count($allMetodes) * 2 }}" class="text-center">Tidak ada data</td> <!-- Perbaikan pada kolom total -->
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
 </body>
 
 </html>
