@@ -164,7 +164,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="{{ 6 + count($allMetodes) * 2 }}" class="text-center">Tidak ada data</td> <!-- Perbaikan pada kolom total -->
+                        <td colspan="{{ 8 + count($allMetodes) * 2 }}" class="text-center">Tidak ada data</td> <!-- Perbaikan pada kolom total -->
                     </tr>
                 @endforelse
             </tbody>
