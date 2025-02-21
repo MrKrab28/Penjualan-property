@@ -51,12 +51,10 @@ class LaporanController extends Controller
     public function user()
     {
         $penjualan = Penjualan::all()->pluck('user_id');
-        $users = User::where('id', $penjualan)->get();
-
-        // Render PDF menggunakan Blade view
+        $users = User::whereIn('id', $penjualan)->get();
 
 
-        // Return PDF untuk di-stream atau di-download
+
         return view('pages.admin.laporan-user', compact(['users']));
     }
 

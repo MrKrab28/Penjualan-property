@@ -15,8 +15,8 @@
                     <form action="{{ route('property.update', $property->id) }}" method="POST" autocomplete="off">
                         @csrf
                         @method('PUT')
-                        <x-form.input value="{{ $property->nominal_book }}" label="Nominal Book" name="nominal_book" id="nominal_bookInput"
-                            :required="true" :isNumeric="true" />
+                        <x-form.input value="{{ $property->nominal_book }}" label="Nominal Book" name="nominal_book"
+                            id="nominal_bookInput" :required="true" :isNumeric="true" />
                         <x-form.input value="{{ $property->property }}" label="Property" name="property"
                             id="propertyInput" :required="true" />
                         <x-form.input value="{{ $property->lokasi }}" label="lokasi" name="lokasi" id="lokasiInput"
@@ -35,15 +35,13 @@
                             @endforeach
                         </x-form.select-search>
 
-                        @foreach ($metodes as $metode)
-                            @foreach ($metode->harga as $harga)
-                                <x-form.input value="{{ $harga->nominal }}" label="Nominal-{{ $metode->nama }}"
-                                    name="nominal[{{ $metode->id }}]" id="nominalInput{{ $metode->id }}"
-                                    :isNumeric="true" :required="true" />
-                                <x-form.input value="{{ $harga->nominal_dp }}" label="Nominal DP-{{ $metode->nama }}"
-                                    name="nominal_dp[{{ $metode->id }}]" id="nominal_dpInput{{ $metode->id }}"
-                                    :isNumeric="true" :required="true" />
-                            @endforeach
+                        @foreach ($property->harga as $harga)
+                            <x-form.input value="{{ $harga->nominal }}" label="Nominal {{ $harga->metode->nama }}"
+                                name="nominal[{{ $harga->metode->id }}]" id="nominalInput{{ $harga->metode->id }}"
+                                :isNumeric="true" :required="true" />
+                            <x-form.input value="{{ $harga->nominal_dp }}" label="Nominal DP-{{ $harga->metode->nama }}"
+                                name="nominal_dp[{{ $harga->metode->id }}]" id="nominal_dpInput{{ $harga->metode->id }}"
+                                :isNumeric="true" :required="true" />
                         @endforeach
                         <x-form.textarea label="Deskripsi" id="deskripsiinput" name="deskripsi" :rows="5"
                             :required="true">{{ $property->deskripsi }}</x-form.textarea>

@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="{{ asset('assets/admin/css/app.css') }}">
+    {{-- <link rel="stylesheet" href="{{ public_path('assets/admin/vendor/css/core.css') }}" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{ public_path('assets/admin/vendor/css/core.css') }}">
+    <link rel="stylesheet" href="{{ public_path('assets/admin/vendor/css/theme-default.css') }}"> --}}
     <style>
         @page {
 
@@ -20,8 +22,8 @@
             line-height: 1.4;
         }
 
-        <style>@page {
-            size: A4 landscape;
+        @page {
+
             margin: 5mm;
         }
 
@@ -62,10 +64,7 @@
             /* Tengah horizontal untuk header */
         }
 
-        td {
-            text-align: left;
-            /* Rata kiri untuk semua td */
-        }
+
 
         .text-center {
             text-align: center;
@@ -103,15 +102,63 @@
         <h3 class="mt-5">Laporan Detail User</h3>
         <div class="mt-4">
 
-
             <div class="text-center">
                 <img src="{{ public_path('img/penjualan/foto_ktp/' . $penjualans[0]->foto_ktp) }}" width="200px">
             </div>
 
 
-            <p>Nama : {{ $users->nama }}</p>
-            <p>Email : {{ $users->email }}</p>
-            <p>No. Handphone : {{ $users->no_hp }}</p>
+
+
+            <div class="container" style=" margin-left: 70px ; padding: 0 15px;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="background: white; border: none"></th>
+                            <th style="background: white; border: none"></th>
+                            <th style="background: white; border: none"></th>
+                            <th style="background: white; border: none"></th>
+                            <th style="background: white; border: none"></th>
+                            <th style="background: white; border: none"></th>
+                            <th style="background: white; border: none"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+
+                            <td style="border: none;" width="10px"> Nama</td>
+                            <td style="border: none;">: {{ $users->nama }}</td>
+                            <td style="border: none;"></td>
+                            <td style="border: none;"></td>
+                            <td style="border: none;"></td>
+                            <td style="border: none;" width="150px">Pekerjaan</td>
+                            <td style="border: none;">: {{ $penjualans[0]->pekerjaan }}</td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;" width="20px"> Email</td>
+                            <td style="border: none;">: {{ $users->email }}</td>
+                            <td style="border: none;"></td>
+                            <td style="border: none;"></td>
+                            <td style="border: none;"></td>
+                            <td style="border: none;" width="150px">Nama Tempat Bekerja</td>
+                            <td style="border: none;">: {{ $penjualans[0]->nama_tempat_bekerja }}</td>
+
+
+                        </tr>
+
+                        <tr>
+                            <td style="border: none;" width="60px"> No.Handphone</td>
+                            <td style="border: none;">: {{ $users->no_hp }}</td>
+                            <td style="border: none;"></td>
+                            <td style="border: none;"></td>
+                            <td style="border: none;"></td>
+                            <td style="border: none;" width="150px">Kontak Orang Terdekat</td>
+                            <td style="border: none;">:
+                                {{ $penjualans[0]->no_hp_orang_terdekat }}({{ $penjualans[0]->nama_orang_terdekat }})
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <h3 class="mt-5">Riwayat Pembelian</h3>
         <table class="table mt-4">
@@ -120,6 +167,7 @@
                     <th>#</th>
                     <th>Property</th>
                     <th>Type</th>
+
                     <th>Harga Property</th>
                     <th>Banyak Cicilan</th>
                     <th>Sisa Cicilan</th>
@@ -131,6 +179,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $penjualan->nama_property }}</td>
                         <td>{{ $penjualan->nama_type }}</td>
+
                         <td>Rp.{{ number_format($penjualan->nominal_harga) }}</td>
                         <td>{{ $penjualan->jumlah_pembayaran }} x</td>
                         <td>{{ $penjualan->jumlah_pembayaran - $penjualan->cicilan->count() }} x</td>

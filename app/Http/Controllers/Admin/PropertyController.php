@@ -108,8 +108,8 @@ class PropertyController extends Controller
         {
             $harga = Harga::where('property_id' ,  $property->id)->where('metode_id' , $metode->id)->first();
 
-            $harga->nominal = $request->nominal[$metode->id];
-            $harga->nominal_dp = $request->nominal_dp[$metode->id];
+            $harga->nominal = convertToNumber($request->nominal[$metode->id]) ;
+            $harga->nominal_dp = convertToNumber($request->nominal_dp[$metode->id]) ;
             $harga->update();
         }
 

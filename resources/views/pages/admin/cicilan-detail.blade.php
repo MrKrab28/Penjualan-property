@@ -53,7 +53,7 @@
                             @foreach ($penjualan->cicilan as $angsuran)
                                 <tr>
                                     <td>{{ $loop->iteration }} </td>
-                                    <td>{{ number_format($angsuran->nominal_cicilan) }} </td>
+                                    <td>Rp. {{ number_format($angsuran->nominal_cicilan) }} </td>
                                     <td>{{ Carbon\Carbon::parse($angsuran->tgl_cicilan)->IsoFormat('DD MMMM YY') }}</td>
 
                                 </tr>
