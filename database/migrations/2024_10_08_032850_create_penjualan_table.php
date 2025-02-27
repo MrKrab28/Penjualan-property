@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama_property');
             $table->string('nama_type');
             $table->foreignId('user_id');
+            $table->foreignId('agent_id');
             $table->string('alamat');
             $table->string('status_kawin');
             $table->integer('jumlah_pembayaran');
@@ -37,6 +38,10 @@ return new class extends Migration
 
 
             $table->foreign('user_id')->references('id')->on('users')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
+            $table->foreign('agent_id')->references('id')->on('marketing')
             ->onDelete('cascade')
             ->onUpdate('cascade');
 
