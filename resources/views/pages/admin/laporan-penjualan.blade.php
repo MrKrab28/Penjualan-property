@@ -80,7 +80,7 @@
                 <th>Metode</th>
                 <th>Harga</th>
                 <th>Nominal Dp</th>
-                <th>Harga Pokok - Dp</th>
+                <th>Harga Pokok</th>
                 <th>Nominal Angsuran</th>
                 <th>Tenor</th>
                 <th>Pembeli</th>

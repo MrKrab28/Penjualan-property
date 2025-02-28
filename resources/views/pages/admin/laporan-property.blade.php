@@ -126,7 +126,7 @@
                     <th rowspan="2">Luas Bangunan</th>
                     <th rowspan="2">Luas Tanah</th>
                     <th rowspan="2">Blok / No</th>
-                    <th colspan="{{ count($allMetodes) }}">Harga Pokok - Dp</th>
+                    <th colspan="{{ count($allMetodes) }}">Harga Pokok</th>
                     <th colspan="{{ count($allMetodes) }}">Harga DP</th> <!-- Menggunakan jumlah allMetodes untuk Harga DP -->
                 </tr>
                 <tr>
