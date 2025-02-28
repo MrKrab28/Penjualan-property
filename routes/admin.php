@@ -41,9 +41,9 @@ Route::middleware('auth:admin')->group( function () {
     //MARKETING
     Route::get('/marketing/index', [MarketingController::class, 'index'])->name('marketing');
     Route::post('/marketing/store', [MarketingController::class, 'store'])->name('marketing.store');
-    Route::get('/marketing/edit/{agent}', [MarketingController::class, 'edit'])->name('marketing.edit');
-    Route::put('/marketing/update/{agent}', [MarketingController::class, 'update'])->name('marketing.update');
-    Route::delete('/marketing/delete/{agent}', [MarketingController::class, 'delete'])->name('marketing.destroy');
+    Route::get('/marketing/edit/{agents}', [MarketingController::class, 'edit'])->name('marketing.edit');
+    Route::put('/marketing/update/{agents}', [MarketingController::class, 'update'])->name('marketing.update');
+    Route::delete('/marketing/delete/{agents}', [MarketingController::class, 'delete'])->name('marketing.destroy');
 
 
 
