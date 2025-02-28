@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Admin;
+use App\Models\Marketing;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -27,6 +28,8 @@ class DatabaseSeeder extends Seeder
             'no_hp' => '085740652176',
             'password' => bcrypt('123'),
         ]);
+
+        
 
         User::factory(10)->create();
 

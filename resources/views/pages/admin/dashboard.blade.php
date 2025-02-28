@@ -101,8 +101,8 @@
         <div class="col-md-4">
             <div class="card my-2 my-md-0">
                 <div class="card-body">
-                    <span class="fw-semibold d-block mb-1">Penjualan</span>
-                    <h3 class="card-title mb-2">{{ number_format($penjualan) }}</h3>
+                    <span class="fw-semibold d-block mb-1">Marketing Agent</span>
+                    <h3 class="card-title mb-2">{{ number_format($agency) }}</h3>
                 </div>
             </div>
         </div>
@@ -117,7 +117,15 @@
 
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
+            <div class="card my-2 my-md-0">
+                <div class="card-body">
+                    <span class="fw-semibold d-block mb-1">Penjualan</span>
+                    <h3 class="card-title mb-2">{{ number_format($penjualan) }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
 
                 <div class="card my-2 my-md-0">
                     <div class="card-body">
@@ -130,7 +138,7 @@
 
 
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="card my-2 my-md-0">
                 <div class="card-body">
                     <span class="fw-semibold d-block mb-1">Property Belum Lunas</span>

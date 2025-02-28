@@ -75,6 +75,12 @@
                                         Rp. {{ number_format($penjualan->nominal_dp) }}
                                     </p>
                                 </div>
+                                <div class="mb-3">
+                                    <h5 class="mb-0">Marketing - Agency </h5>
+                                    <p>
+                                        {{ $penjualan->agents->nama }} - {{ $penjualan->agents->agency }}
+                                    </p>
+                                </div>
 
                         </div>
 

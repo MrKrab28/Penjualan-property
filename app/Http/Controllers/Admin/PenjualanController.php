@@ -11,6 +11,7 @@ use App\Models\Penjualan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Harga;
+use App\Models\Marketing;
 use App\Models\Property;
 
 class PenjualanController extends Controller
@@ -21,6 +22,7 @@ class PenjualanController extends Controller
         // $pelunasanMetode = Metode::where('id' , $penjualan->metode)->first();
         return view('pages.admin.penjualan', [
             'daftarUser' => User::all(),
+            'daftarAgent' => Marketing::all(),
             'properties' => Property::whereNotIn('property', $penjualan)->get(),
             'types' => Type::all(),
             'metodes' => Metode::all(),
@@ -32,8 +34,9 @@ class PenjualanController extends Controller
     {
         $data = $request->validate([
             'property' => 'required',
-            'customer' => 'required',
             'alamat' => 'required',
+            'customer' => 'required',
+            'agent' => 'required',
             'status_kawin' => 'required',
             'metode' => 'required',
             'no_rek' => 'required',
@@ -50,11 +53,14 @@ class PenjualanController extends Controller
 
         $property = Property::find($data['property']);
         $metode = Metode::find($data['metode']);
+
         $harga = Harga::where('property_id', $property->id)->where('metode_id', $data['metode'])->first();
 
         $data['nama_property'] = $property->property;
         $data['nama_type'] = $property->types->nama_type;
         $data['user_id'] = $data['customer'];
+        $data['agent_id'] = $data['agent'];
+
         $data['jumlah_pembayaran'] = $metode->jumlah_pembayaran;
         $data['nominal_dp'] =  convertToNumber($harga->nominal_dp);
         $data['nominal_harga'] = convertToNumber($harga->nominal);
@@ -83,6 +89,7 @@ class PenjualanController extends Controller
             'nama_property' => 'required',
             'nama_type' => 'required',
             'user_id' => 'required',
+            'agent_id' => 'required',
             'no_rek' => 'required',
             'nama_bank' => 'required',
             'nominal_harga' => 'required',

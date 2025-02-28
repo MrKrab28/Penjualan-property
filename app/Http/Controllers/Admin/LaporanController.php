@@ -20,6 +20,7 @@ class LaporanController extends Controller
         $metode = Metode::all();
         $harga = Harga::all();
         $property = Property::all();
+     
         // $pdf = PDF::loadView('pages.admin.laporan-penjualan', compact('penjualan'));
         $pdf = PDF::loadview('pages.admin.laporan-penjualan', ['penjualans' => $penjualan, 'metodes' => $metode, 'hargas' => $harga, 'properties' => $property]);
         return $pdf->stream('laporan-penjualan.pdf');

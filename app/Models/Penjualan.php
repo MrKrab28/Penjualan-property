@@ -15,6 +15,7 @@ class Penjualan extends Model
         'nama_property',
         'nama_type',
         'user_id',
+        'agent_id',
         'jumlah_pembayaran',
         'metode',
         'nominal_dp',
@@ -40,7 +41,11 @@ class Penjualan extends Model
 
     public function cicilan()
     {
-        return $this->hasMany(Cicilan::class, 'penjualan_id');
+        return $this->hasMany(Cicilan::class, 'penjualan_id')->orderBy('tgl_cicilan' , 'desc');
+    }
+
+    public function agents(){
+        return $this->belongsTo(Marketing::class, 'agent_id');
     }
 
     public function lunas(): Attribute

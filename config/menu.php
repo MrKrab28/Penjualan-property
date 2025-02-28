@@ -47,6 +47,12 @@ return [
         'route-name' => 'user',
     ],
     [
+        'route-active' => 'marketing',
+        'label' => 'Marketing',
+        'icon' => 'bxs-user-account',
+        'route-name' => 'marketing',
+    ],
+    [
         'route-active' => 'property',
         'label' => 'Property',
         'icon' => 'bx-building-house',

@@ -14,9 +14,10 @@ use App\Http\Controllers\Admin\HargaController;
 use App\Http\Controllers\Admin\MetodeController;
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\CicilanController;
+use App\Http\Controllers\Admin\LaporanController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\Admin\DashboardController;
-use App\Http\Controllers\Admin\LaporanController;
+use App\Http\Controllers\Admin\MarketingController;
 use App\Http\Controllers\Admin\PenjualanController;
 use App\Http\Controllers\Admin\TransaksiController;
 use App\Http\Controllers\Admin\PropertyImgController;
@@ -37,6 +38,12 @@ Route::middleware('auth:admin')->group( function () {
     Route::put('/user/update/{user}', [UserController::class, 'update'])->name('user.update');
     Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy');
 
+    //MARKETING
+    Route::get('/marketing/index', [MarketingController::class, 'index'])->name('marketing');
+    Route::post('/marketing/store', [MarketingController::class, 'store'])->name('marketing.store');
+    Route::get('/marketing/edit/{agent}', [MarketingController::class, 'edit'])->name('marketing.edit');
+    Route::put('/marketing/update/{agent}', [MarketingController::class, 'update'])->name('marketing.update');
+    Route::delete('/marketing/delete/{agent}', [MarketingController::class, 'delete'])->name('marketing.destroy');
 
 
 

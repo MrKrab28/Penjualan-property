@@ -61,7 +61,7 @@
 
 <body>
     <div class="text-center">
-        <img src="" width="200" alt="Logo Perusahaan">
+        <img src="{{ public_path('assets/admin/img/LOGO-EMK.png') }}" width="100" alt="Logo Perusahaan">
         <h3>PT. EDI MITRA KARYA INDONESIA</h3>
         <div class="sekret">
             <p>Perumahan, Jl. Bumi Permata Sudiang 2 No.18, Kel.Sudiang Raya, Kec.Biringkanaya, Kota Makassar, Sulawesi Selatan 90552</p>
@@ -80,10 +80,13 @@
                 <th>Metode</th>
                 <th>Harga</th>
                 <th>Nominal Dp</th>
+                <th>Harga Pokok - Dp</th>
                 <th>Nominal Angsuran</th>
                 <th>Tenor</th>
                 <th>Pembeli</th>
                 <th>Tanggal</th>
+                <th>Tanggal pembayaran Terakhir</th>
+                <th>Marketing</th>
 
             </tr>
         </thead>
@@ -94,6 +97,7 @@
                         $hargaProperty = $hargas->where('nominal', $penjualan->nominal_harga)->first();
                         $nominal_cicilan = $hargaProperty->nominal / $penjualan->jumlah_pembayaran;
                         $property = $properties->where('property', $penjualan->nama_property)->first();
+                        $tanggalCicilanTerakhir = $penjualan->cicilan->first()->tgl_cicilan;
                     @endphp
                 <tr>
                     <td >{{ $loop->iteration }}</td>
@@ -103,6 +107,7 @@
                     <td>{{ $namaMetode->nama }}</td>
                     <td>Rp.{{ number_format($hargaProperty->nominal) }}</td>
                     <td>Rp.{{ number_format( $penjualan->nominal_dp) }}</td>
+                    <td>Rp.{{ number_format($hargaProperty->nominal - $penjualan->nominal_dp)  }}</td>
                     @if ($penjualan->nominal_dp == 0 && $penjualan->lunas == false)
                     <td class="text-success">Rp. - </td>
                     @else
@@ -111,10 +116,12 @@
                     <td>{{ $namaMetode->jumlah_pembayaran }}x</td>
                     <td>{{ $penjualan->users->nama }}</td>
                     <td>{{ Carbon\Carbon::parse($penjualan->tanggal)->isoFormat('DD MMMM YYYY') }}</td>
+                    <td>{{ Carbon\Carbon::parse($tanggalCicilanTerakhir)->isoFormat('DD MMMM YYYY') }}</td>
+                    <td>{{ $penjualan->agents->nama }} - {{ $penjualan->agents->agency }}</td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="11" class="text-center">Tidak ada data</td>
+                    <td colspan="12" class="text-center">Tidak ada data</td>
                 </tr>
             @endforelse
 

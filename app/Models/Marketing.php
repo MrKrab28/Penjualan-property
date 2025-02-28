@@ -13,6 +13,12 @@ class Marketing extends Model
         'agency',
         'nama',
         'no_rek',
+        'no_hp',
         'ktp',
     ];
+
+    public function penjualan()
+    {
+        return $this->hasMany(Penjualan::class, 'agent_id');
+    }
 }

@@ -8,6 +8,7 @@ use App\Models\Property;
 use App\Models\Penjualan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Marketing;
 
 class DashboardController extends Controller
 {
@@ -17,6 +18,7 @@ class DashboardController extends Controller
         return view('pages.admin.dashboard', [
             'penjualan' => Penjualan::all()->count(),
             'booking' => Booking::all()->count(),
+            'agency' => Marketing::all()->count(),
             'cicilanLunas' => Penjualan::all()->filter(function ($penjualan) {
                 return $penjualan->lunas;
             })->count(),

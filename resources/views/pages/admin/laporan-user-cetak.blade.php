@@ -180,7 +180,7 @@
                         <td>{{ $penjualan->nama_property }}</td>
                         <td>{{ $penjualan->nama_type }}</td>
 
-                        <td>Rp.{{ number_format($penjualan->nominal_harga) }}</td>
+                        <td>Rp.{{ number_format($penjualan->nominal_harga + $penjualan->nominal_dp) }}</td>
                         <td>{{ $penjualan->jumlah_pembayaran }} x</td>
                         <td>{{ $penjualan->jumlah_pembayaran - $penjualan->cicilan->count() }} x</td>
                     </tr>

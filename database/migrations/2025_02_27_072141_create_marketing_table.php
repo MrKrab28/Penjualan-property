@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('agency');
             $table->string('nama');
             $table->string('no_rek');
+            $table->string('no_hp');
             $table->string('ktp');
             $table->timestamps();
 

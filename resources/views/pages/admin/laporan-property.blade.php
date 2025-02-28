@@ -61,7 +61,7 @@
 
 <body>
     <div class="text-center">
-        <img src="" width="200" alt="Logo Perusahaan">
+        <img src="{{ public_path('assets/admin/img/LOGO-EMK.png') }}" width="100" alt="Logo Perusahaan">
         <h3>PT. EDI MITRA KARYA INDONESIA</h3>
         <div class="sekret">
             <p>Perumahan, Jl. Bumi Permata Sudiang 2 No.18, Kel.Sudiang Raya, Kec.Biringkanaya, Kota Makassar, Sulawesi Selatan 90552</p>
@@ -126,7 +126,7 @@
                     <th rowspan="2">Luas Bangunan</th>
                     <th rowspan="2">Luas Tanah</th>
                     <th rowspan="2">Blok / No</th>
-                    <th colspan="{{ count($allMetodes) }}">Harga</th>
+                    <th colspan="{{ count($allMetodes) }}">Harga Pokok - Dp</th>
                     <th colspan="{{ count($allMetodes) }}">Harga DP</th> <!-- Menggunakan jumlah allMetodes untuk Harga DP -->
                 </tr>
                 <tr>

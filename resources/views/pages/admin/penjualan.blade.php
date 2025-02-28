@@ -28,14 +28,16 @@
                                 modalId="formModal">
 
                                 @foreach ($daftarUser as $customer)
-                                    <option value="{{ $customer->id }}">{{ $customer->nama }} || {{ $customer->no_hp }}</option>
+                                    <option value="{{ $customer->id }}">{{ $customer->nama }} || {{ $customer->no_hp }}
+                                    </option>
                                 @endforeach
                             </x-form.select-search>
+
 
                             <x-form.textarea label="alamat" id="alamatinput" name="alamat" :rows="3"
                                 :required="true"></x-form.textarea>
 
-                            <x-form.input label="Status Kawin" name="status_kawin" id="status_kawinInput"
+                            <x-form.input label="Status Menikah" name="status_kawin" id="status_kawinInput"
                                 :required="true" />
 
                             <x-form.select-search label="Metode" name="metode" id="metodeSelect" :required="true"
@@ -63,7 +65,14 @@
                                 id="no_hp_orang_terdekatInput" :required="true" />
                             <x-form.textarea label="Alamat Orang Terdekat" id="alamat_orang_terdekatInput"
                                 name="alamat_orang_terdekat" :rows="3" :required="true"></x-form.textarea>
+                            <x-form.select-search label="Agency" name="agent" id="AgentSelect" :required="true"
+                                modalId="formModal">
 
+                                @foreach ($daftarAgent as $agent)
+                                    <option value="{{ $agent->id }}">{{ $agent->nama }} || {{ $agent->agency }}
+                                    </option>
+                                @endforeach
+                            </x-form.select-search>
 
                             <x-form.image label="Foto KTP" name="foto_ktp" id="imgInput" :required="true" />
 
@@ -94,14 +103,16 @@
                             <td>{{ $penjualan->nama_property }}</td>
                             <td>{{ $penjualan->users->nama }}</td>
                             <td>{{ Carbon\Carbon::parse($penjualan->tanggal)->IsoFormat('DD MMMM YYYY') }}</td>
-                            <td>{{ $metodes->where('id', $penjualan->metode)->first()->nama  }}</td>
+                            <td>{{ $metodes->where('id', $penjualan->metode)->first()->nama }}</td>
 
                             @if ($penjualan->nominal_dp == 0 && $penjualan->lunas == false)
-                            <td class="text-success">Lunas</td>
+                                <td class="text-success">Lunas</td>
                             @elseif ($penjualan->lunas)
-                            <td>{!! $penjualan->lunas ?  '<span class="text-success">Lunas</span>' : '<span class="text-danger">Belum Lunas</span>' !!}</td>
+                                <td>{!! $penjualan->lunas
+                                    ? '<span class="text-success">Lunas</span>'
+                                    : '<span class="text-danger">Belum Lunas</span>' !!}</td>
                             @elseif(!$penjualan->lunas)
-                            <td class="text-danger">Belum Lunas</td>
+                                <td class="text-danger">Belum Lunas</td>
                             @endif
                             {{-- <td>{{ $penjualan->lunas }}</td> --}}
 
