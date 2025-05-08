@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Harga;
 use App\Models\Metode;
@@ -16,14 +17,49 @@ class LaporanController extends Controller
 {
     public function penjualan()
     {
-        $penjualan = Penjualan::all();
+        // $penjualan = Penjualan::with(['cicilan', 'harga', 'properti'])->get();
+
+        // // Load data pendukung
+        // $metode = Metode::all();
+        // $harga = Harga::all();
+        // $property = Property::all();
+
+        // $pdf = PDF::loadview('pages.admin.laporan-penjualan-cetak', [
+        //     'penjualans' => $penjualan,
+        //     'metodes' => $metode,
+        //     'hargas' => $harga,
+        //     'properties' => $property
+        // ]);
+        // return $pdf->stream('laporan-penjualan-cetak.pdf');
+        return view('pages.admin.laporan-penjualan');
+    }
+
+    public function penjualanIndex(Request $request){
+        $bulan = $request->input('bulan', Carbon::now()->month);
+        $tahun = $request->input('tahun', Carbon::now()->year);
+
+        // Filter data penjualan berdasarkan bulan dan tahun pada created_at
+        $penjualan = Penjualan::with(['cicilan', 'harga', 'properti'])
+            ->whereMonth('created_at', $bulan)
+            ->whereYear('created_at', $tahun)
+            ->get();
+
+        // Load data pendukung
         $metode = Metode::all();
         $harga = Harga::all();
         $property = Property::all();
-     
-        // $pdf = PDF::loadView('pages.admin.laporan-penjualan', compact('penjualan'));
-        $pdf = PDF::loadview('pages.admin.laporan-penjualan', ['penjualans' => $penjualan, 'metodes' => $metode, 'hargas' => $harga, 'properties' => $property]);
-        return $pdf->stream('laporan-penjualan.pdf');
+
+        // Generate PDF
+        $pdf = PDF::loadview('pages.admin.laporan-penjualan-cetak', [
+            'penjualans' => $penjualan,
+            'metodes' => $metode,
+            'hargas' => $harga,
+            'properties' => $property,
+            'bulan' => $bulan,
+            'tahun' => $tahun
+        ]);
+
+        return $pdf->stream('laporan-penjualan-cetak.pdf');
     }
 
     public function keuangan()

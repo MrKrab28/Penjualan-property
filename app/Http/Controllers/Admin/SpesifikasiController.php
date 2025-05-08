@@ -49,9 +49,9 @@ class SpesifikasiController extends Controller
         return redirect()->back()->with('success', 'Spesifikasi updated successfully');
     }
 
-    public function destroy(Spesifikasi $speks)
+    public function destroy(Spesifikasi $spek)
     {
-        $speks->delete();
+        $spek->delete();
         return redirect()->back()->with('success', 'Spesifikasi deleted successfully');
     }
 

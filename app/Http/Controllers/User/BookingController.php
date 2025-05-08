@@ -45,9 +45,14 @@ class BookingController extends Controller
 
     public function detail(Booking $booking)
     {
+
+        $latestBooking = Booking::where('user_id', auth()->id())
+        ->where('nama_property', $booking->nama_property)
+        ->latest()
+        ->first();
         $property = Property::where('property', $booking->nama_property)->first();
         return view('pages.user.booking-detail', [
-            'booking' => $booking,
+            'booking' => $latestBooking,
             'property' => $property
         ]);
     }

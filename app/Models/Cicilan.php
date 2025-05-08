@@ -11,4 +11,9 @@ class Cicilan extends Model
 
     protected $table = 'cicilan';
     protected $fillable = ['penjualan_id', 'nominal_cicilan', 'tgl_cicilan'];
+
+
+    public function penjualan(){
+        return $this->belongsTo(penjualan::class, 'penjualan_id');
+    }
 }

@@ -41,12 +41,14 @@ class Penjualan extends Model
 
     public function cicilan()
     {
-        return $this->hasMany(Cicilan::class, 'penjualan_id')->orderBy('tgl_cicilan' , 'desc');
+        return $this->hasMany(Cicilan::class, 'penjualan_id')->orderBy('tgl_cicilan', 'desc');
     }
 
-    public function agents(){
+    public function agents()
+    {
         return $this->belongsTo(Marketing::class, 'agent_id');
     }
+
 
     public function lunas(): Attribute
     {
@@ -65,5 +67,18 @@ class Penjualan extends Model
         return Attribute::make(
             get: fn() => $this->metode == $metode->id
         );
+    }
+    public function harga()
+    {
+        return $this->belongsTo(Harga::class, 'nominal_harga', 'nominal');
+        // Atau jika nominal_harga menyimpan ID dari tabel harga
+        // return $this->belongsTo(Harga::class, 'nominal_harga', 'id');
+    }
+
+    public function properti()
+    {
+        return $this->belongsTo(Property::class, 'nama_property', 'property');
+        // Atau jika menggunakan ID
+        // return $this->belongsTo(Property::class, 'property_id');
     }
 }

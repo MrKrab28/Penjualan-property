@@ -48,4 +48,9 @@ class MarketingController extends Controller
         $agents->update($data);
         return redirect()->back()->with('success', 'Berhasil Mengubah Data Marketing');
     }
+
+    public function delete(Marketing $agents){
+        $agents->delete();
+        return redirect()->back()->with('success', 'Berhasil Menghapus Data');
+    }
 }

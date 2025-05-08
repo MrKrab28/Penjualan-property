@@ -109,6 +109,7 @@ Route::middleware('auth:admin')->group( function () {
     Route::get('/laporan/user/cetak/{user}', [LaporanController::class, 'cetakUser'])->name('user.cetak');
     // Route::get('/laporan/keuangan', [LaporanController::class, 'keuangan'])->name('pdf.keuangan');
     Route::get('/laporan/property', [LaporanController::class, 'property'])->name('pdf.property');
+    Route::get('/laporan/penjualan/cetak', [LaporanController::class, 'penjualanIndex'])->name('pdf.laporan-penjualan-cetak');
 
 
     // BOOKING
